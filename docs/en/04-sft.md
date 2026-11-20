@@ -65,6 +65,8 @@ This is pitfall #8 in [06](06-cost-and-pitfalls.md); the failing run is kept as
 
 ## 5. Results
 
+![SFT curve](../../assets/sft_curve.png)
+
 | Run | val_loss | Note |
 |---|---:|---|
 | buggy (no shift) | **0.0005** | degenerate copy solution — loss looks perfect, generation is broken |

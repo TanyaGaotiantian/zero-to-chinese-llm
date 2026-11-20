@@ -170,6 +170,27 @@ Inside the CLI: `/diary` (compress history into a diary entry), `/recall <keywor
 
 ---
 
+## 📖 Syllabus
+
+> Every chapter stands alone, but the order matters: corpus first, verify resume before long runs.
+
+| Ch | What you get | Key numbers | Status |
+|---|---|---|---|
+| [00 · Overview](docs/en/00-overview.md) | pipeline, why this order, acceptance, timeline | 4.5 h of compute | ✅ |
+| [01 · Corpus](docs/en/01-corpus.md) | extract/clean/dedup/sample/tokenize/pack + funnel | 485,894 → **71,665** docs | ✅ |
+| [02 · Pretraining](docs/en/02-pretraining.md) | architecture, hyperparameters, throughput/VRAM analysis | **114.3k tok/s / 11.15 GiB** | ✅ |
+| [03 · Resume](docs/en/03-resume.md) | `kill -9` protocol, what a ckpt must hold, 5 mistakes | **60/60 fingerprints** | ✅ |
+| [04 · SFT](docs/en/04-sft.md) | ChatML, vocab extension, assistant-only loss, one real bug | val **3.807** (best) | ✅ |
+| [05 · Memory](docs/en/05-memory.md) | SQLite + FTS5 diary memory, extractive fallback, gate | 16 msg → 1 diary | ✅ |
+| [06 · Cost & pitfalls](docs/en/06-cost-and-pitfalls.md) | itemised bill + **8 real pitfalls** (incl. a ¥11.3 idle) | ≈¥19 | ✅ |
+| [07 · Checklist](docs/en/07-checklist.md) | 8-stage checklist with expected outputs | — | ✅ |
+
+Chinese originals live in [docs/](docs/).
+
+![SFT curve: the 2.4 target was not reached, best 3.807](assets/sft_curve.png)
+
+---
+
 ## 🗂 Layout
 
 ```text

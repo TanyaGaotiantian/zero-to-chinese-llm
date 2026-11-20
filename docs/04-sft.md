@@ -104,6 +104,9 @@ y = torch.full((B, maxlen), -100, dtype=torch.long)   # 先全 -100，再填真�
 
 ## 5. 结果
 
+![SFT 曲线](../assets/sft_curve.png)
+
+
 ```text
 [init] loaded runs/125m/latest.pt (new special-token rows are randomly initialised)
 [data] train=23500 val=500 steps/epoch=735 total=2205
