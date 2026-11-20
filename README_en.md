@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/banner.svg" alt="Zero to Chinese LLM · QingLuan" width="100%">
+  <img src="assets/banner.svg" alt="Zero to Chinese LLM: a 125M/360M Chinese GPT trained from scratch" width="100%">
 </div>
 
 <div align="center">
@@ -78,6 +78,26 @@ Packing: flat `uint16` stream with EOS between documents → `train.bin` is 225 
 | Result | val_loss **3.81** (best, step 2000) / 4.20 (final); 3 epochs, 2205 steps |
 | Battle scar | forgot the one-token label shift → the model learned to copy its input, val_loss collapsed to **0.0005**; fixed and kept as evidence |
 | Memory | single SQLite file + FTS5 trigram index; diary summaries with `covered_until`; good/bad feedback attached to messages |
+
+---
+
+## 🧪 Try the model (no GPU, no training)
+
+Weights live in [release v1.0-models](https://github.com/TanyaGaotiantian/zero-to-chinese-llm/releases/tag/v1.0-models)
+(125M SFT, bf16, 287 MiB):
+
+| Option | Needs | How |
+|---|---|---|
+| **Read real outputs** | nothing | [demo/samples.md](demo/samples.md) (unedited) |
+| **Colab, one click** | a browser | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TanyaGaotiantian/zero-to-chinese-llm/blob/main/demo/colab.ipynb) |
+| **Local web UI** | `pip install gradio` | `python demo/app.py` → `http://127.0.0.1:7860` |
+| **CLI** | same | `python demo/app.py --once "explain gradient in one sentence"` |
+
+The UI exposes `temperature`, `top-p` and `repetition penalty`. Set the penalty to 1.0 and you
+will immediately see the classic small-model failure mode: it repeats itself forever.
+
+> This is what 125M parameters and 112.5M tokens really look like: **fluent Chinese, unusable semantics.**
+> Point `--ckpt` at a bigger model, or swap `serve_model.py` for any OpenAI-compatible endpoint.
 
 ---
 
@@ -208,6 +228,7 @@ zero-to-chinese-llm/
 ├─ docs/en/                         # English versions
 ├─ code/llm/                        # 11 standalone scripts (no private deps)
 ├─ scripts/                         # one-shot scripts
+├─ demo/                            # playground: app.py (Gradio) / colab.ipynb / samples.md
 ├─ results/                         # real train.csv / stats.json / samples
 └─ assets/                          # figures
 ```

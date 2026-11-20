@@ -1,8 +1,8 @@
-# Model card · 青鸾 QingLuan 125M / 360M
+# Model card · 125M / 360M Chinese GPT (trained from scratch)
 
 ## Overview
 
-| | QingLuan-125M | QingLuan-360M |
+| | 125M | 360M |
 |---|---|---|
 | Type | decoder-only Transformer (LLaMA-style) | same |
 | Parameters | 125,753,088 | 360,403,968 |

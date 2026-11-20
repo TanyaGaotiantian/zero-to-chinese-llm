@@ -69,7 +69,7 @@
 
 - [ ] `bash scripts/demo_memory.sh`
 - [ ] `logs/memory_demo.log` 里出现 `[已写入日记]`
-- [ ] `/recall 青鸾` 能返回包含"青鸾"的日记
+- [ ] `/recall llm-lab` 能返回包含“llm-lab”的日记
 - [ ] sqlite 里三张表都有数据：
 
 ```bash

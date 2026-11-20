@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/banner.svg" alt="Zero to Chinese LLM · 青鸾 QingLuan" width="100%">
+  <img src="assets/banner.svg" alt="Zero to Chinese LLM: a 125M/360M Chinese GPT trained from scratch" width="100%">
 </div>
 
 <div align="center">
@@ -81,6 +81,30 @@
 | 结果 | val_loss **3.81**（最好，step 2000）/ 4.20（末）；3 epoch、2205 步 |
 | 踩过的坑 | 忘记对 label 做 shift → 学到"复制输入"，val_loss 假性降到 **0.0005**，已修复并留档 |
 | 记忆 | SQLite 单文件 + FTS5 trigram 索引；日记式摘要 + `covered_until` 防重复压缩；good/bad 反馈记到具体消息 |
+
+---
+
+## 🧪 直接试：不训练也能看到这个模型的效果
+
+模型权重已经放进 [release v1.0-models](https://github.com/TanyaGaotiantian/zero-to-chinese-llm/releases/tag/v1.0-models)（125M SFT，bf16，287 MiB），不需要显卡：
+
+| 方式 | 需要 | 怎么做 |
+|---|---|---|
+| **看现成输出** | 什么都不用 | [demo/samples.md](demo/samples.md)（真实输出，未挑选） |
+| **Colab 一键跑** | 一个浏览器 | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/TanyaGaotiantian/zero-to-chinese-llm/blob/main/demo/colab.ipynb) |
+| **本地 Web UI** | `pip install gradio` | `python demo/app.py` → `http://127.0.0.1:7860` |
+| **命令行** | 同上 | `python demo/app.py --once "用一句话解释什么是梯度"` |
+
+界面里可以直接调 `temperature` / `top-p` / `repetition penalty`——把 `repetition penalty` 调到 1.0，
+你会立刻看到它陷入复读，这是小模型最典型的失败模式。
+
+```text
+你> 用一句话解释什么是机器学习
+模型> ,这是一来根来,只是设计我把窗子的电架给师父。 生意,看着我手里的木马照片……
+```
+
+> 这就是 125M / 112.5M tokens 的真实水平：**中文语法通顺，语义不可用**。
+> 想看更好的回答，把 `--ckpt` 换成任意大模型，或用 OpenAI 兼容端点替换 `serve_model.py`。
 
 ---
 
@@ -214,6 +238,7 @@ zero-to-chinese-llm/
 ├─ docs/en/                         # 英文版（同结构）
 ├─ code/llm/                        # 10 个可独立运行的脚本（无私有依赖）
 ├─ scripts/                         # 一键脚本（取数/语料/训练/演示）
+├─ demo/                            # 预览：app.py(Gradio) / colab.ipynb / samples.md
 ├─ results/                         # 真实 train.csv / stats.json / 生成样例
 └─ assets/                          # 图
 ```

@@ -24,7 +24,7 @@ CREATE TABLE feedback(id INTEGER PRIMARY KEY, message_id INTEGER, score INTEGER,
 1. **`covered_until`** — the id of the last message already compressed; without it the same
    history is re-summarised forever.
 2. **`trigram`** — the default tokenizer treats a whole Chinese sentence as one token; trigram
-   lets "青鸾" match.
+   lets “llm-lab” match.
 3. **external content FTS** — index only, no duplicate body, no drift.
 
 ## 3. Compression (and the trap)
@@ -70,11 +70,11 @@ The "可能不完整" wording is deliberate: it tells the model not to treat mem
 messages 16
 diaries 1
 feedback 1
-[diary 1] 2026-11-20 对话摘要（抽取式）：我叫高旻坤，在做一个小模型预训练项目，代号是「青鸾」…
+[diary 1] 2026-11-20 对话摘要（抽取式）：我叫高旻坤，在做一个小模型预训练项目，代号是「llm-lab」…
 fts_rows 1
 ```
 
-`/recall 青鸾` hits the diary via FTS5; `/feedback good …` is stored; the SQLite file survives restarts.
+`/recall llm-lab` hits the diary via FTS5; `/feedback good …` is stored; the SQLite file survives restarts.
 The chat replies themselves are poor (125M model) but the four links — store, compress, retrieve,
 feedback — all work, and swapping in any OpenAI-compatible endpoint makes it usable.
 

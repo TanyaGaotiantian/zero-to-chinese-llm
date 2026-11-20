@@ -23,23 +23,23 @@
   <circle cx="1010" cy="90" r="120" fill="#4f9cff" opacity="0.10" filter="url(#glow)"/>
   <circle cx="1120" cy="230" r="90" fill="#39d0b0" opacity="0.10" filter="url(#glow)"/>
 
-  <text x="64" y="96" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="20" letter-spacing="6" fill="#7fa6ff">ZERO → CHINESE LLM</text>
+  <text x="64" y="92" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="19" letter-spacing="6" fill="#7fa6ff">TRAINED FROM RANDOM WEIGHTS · NO API, NO DISTILLATION</text>
 
-  <text x="62" y="170" font-family="Inter, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif" font-size="64" font-weight="700" fill="#ffffff">青鸾 QingLuan</text>
-  <text x="64" y="212" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#c8d6f0">125M → 360M Chinese GPT, trained from scratch</text>
+  <text x="62" y="168" font-family="Inter, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif" font-size="62" font-weight="700" fill="#ffffff">Zero to Chinese LLM</text>
+  <text x="64" y="210" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#c8d6f0">125M → 360M Chinese GPT · corpus engineering · SFT · memory CLI</text>
 
-  <rect x="64" y="238" width="640" height="6" rx="3" fill="url(#accent)"/>
+  <rect x="64" y="236" width="620" height="6" rx="3" fill="url(#accent)"/>
 
-  <text x="64" y="286" font-family="Inter, 'PingFang SC', Arial, sans-serif" font-size="19" fill="#93a7c8">71,665 docs · 112.5M tokens · 114.3k tok/s · 11.15 GiB · ≈¥19 total</text>
+  <text x="64" y="284" font-family="Inter, 'PingFang SC', Arial, sans-serif" font-size="19" fill="#93a7c8">71,665 docs · 112.5M tokens · 114.3k tok/s · 11.15 GiB · ≈¥19 in total</text>
 
   <g font-family="Inter, Arial, sans-serif" font-size="15" fill="#0b1220">
-    <rect x="880" y="132" width="122" height="34" rx="17" fill="#4f9cff"/>
-    <text x="901" y="155">PyTorch 2.8</text>
-    <rect x="1012" y="132" width="112" height="34" rx="17" fill="#39d0b0"/>
-    <text x="1030" y="155">bf16 SDPA</text>
-    <rect x="880" y="176" width="150" height="34" rx="17" fill="#7c5cff"/>
-    <text x="898" y="199">RTX 4090D 24G</text>
-    <rect x="1040" y="176" width="84" height="34" rx="17" fill="#ffd166"/>
-    <text x="1057" y="199">¥19</text>
+    <rect x="866" y="128" width="122" height="34" rx="17" fill="#4f9cff"/>
+    <text x="887" y="151">PyTorch 2.8</text>
+    <rect x="998" y="128" width="112" height="34" rx="17" fill="#39d0b0"/>
+    <text x="1016" y="151">bf16 SDPA</text>
+    <rect x="866" y="172" width="150" height="34" rx="17" fill="#7c5cff"/>
+    <text x="884" y="195">RTX 4090D 24G</text>
+    <rect x="1026" y="172" width="84" height="34" rx="17" fill="#ffd166"/>
+    <text x="1043" y="195">¥19</text>
   </g>
 </svg>

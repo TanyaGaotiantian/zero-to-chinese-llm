@@ -24,7 +24,7 @@ CREATE TABLE feedback(id INTEGER PRIMARY KEY, message_id INTEGER, score INTEGER,
 三个设计点：
 
 1. **`covered_until`**：记录"已经压缩到哪条消息"，下次只压缩新增部分。没有它就会反复压缩同一段历史，日记越写越重复。
-2. **`tokenize='trigram'`**：SQLite 默认分词器对中文无效（整段当一个词）。trigram 把文本切成三字滑窗，"青鸾"这种两字词也能命中。
+2. **`tokenize='trigram'`**：SQLite 默认分词器对中文无效（整段当一个词）。trigram 把文本切成三字滑窗，像「llm-lab」这样的专有名词也能命中。
 3. **`content='diaries'`（external content）**：FTS 表不存正文副本，只存索引，省空间且不会与主表不一致。
 
 ## 3. 压缩策略（这里有个真坑）
@@ -82,14 +82,14 @@ bash scripts/demo_memory.sh   # 起 serve_model + 跑一段 8 轮对话 + dump s
 messages 16
 diaries 1
 feedback 1
-[diary 1] 2026-11-20 对话摘要（抽取式）：我叫高旻坤，在做一个小模型预训练项目，代号是「青鸾」，
-目标是本周五前跑完 2 亿 token。；青鸾项目现在卡在数据去重这一步，MinHash 太慢，我改成了按文档
+[diary 1] 2026-11-20 对话摘要（抽取式）：我叫高旻坤，在做一个小模型预训练项目，代号是「llm-lab」，
+目标是本周五前跑完 2 亿 token。；llm-lab 项目现在卡在数据去重这一步，MinHash 太慢，我改成了按文档
 抽样 shingle。；帮我记一下：明天上午十点要和同事对一下语料漏斗的统计口径。；另外 125M 那个模型
 的峰值显存是 11.15 GiB，比我预期低。
 fts_rows 1
 ```
 
-- `/recall 青鸾` 命中这条日记（FTS5 trigram）；
+- `/recall llm-lab` 命中这条日记（FTS5 trigram）；
 - `/feedback good 回答了项目代号` 写入 `feedback`；
 - 重启进程后数据仍在（SQLite 文件），这就是"本地持久化"。
 
@@ -111,7 +111,7 @@ export LLM_BASE_URL=http://127.0.0.1:8011/v1 LLM_MODEL=local-sft
 python code/llm/memory_chat.py --session demo
 # 输入 8 轮对话后：
 /diary           # 应输出一条包含关键事实的摘要
-/recall 青鸾      # 应命中
+/recall llm-lab      # 应命中
 /feedback good ok
 ```
 
