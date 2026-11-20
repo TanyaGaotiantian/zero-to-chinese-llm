@@ -54,7 +54,11 @@ bash scripts/stages.sh 360m      # 2 h
 | 300 | 5.7029 *(val)* | 114.3k |
 | 500 | 4.6975 *(val)* | 114.3k |
 | 600 | 4.5412 *(val)* | 111.8k |
-| 699 | 4.55 (train) | 112.2k |
+| 680 (last CSV row) | 4.55 (train) | 112.2k |
+
+> The run actually finished **699 steps** (`[done] steps=699 tokens=343572480`), but with
+> `--log-interval 20` the last CSV row is step 680: the final 19 steps only exist inside the
+> final checkpoint. Do not mistake 680 for the end of training.
 
 Peak: **11.15 GiB allocated / 12.12 GiB reserved**. ppl 1713 → **93.8**.
 

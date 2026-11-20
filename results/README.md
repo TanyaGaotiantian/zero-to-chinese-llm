@@ -16,5 +16,9 @@ Everything here is copied straight from the run directory — no retouching.
 | `smoke.log` | 20-step smoke test |
 | `prep.log` | full corpus pipeline log |
 
-Note: `wall_s` / `tok_per_s` in the CSVs are per-log-interval and include a warmup step, which is
-why the first row is slower than the steady state.
+Notes:
+
+- `wall_s` / `tok_per_s` are per-log-interval and include the warmup step, which is why the first
+  row looks slower than the steady state.
+- The CSVs only contain logged steps (`--log-interval`), so the last row can be a few steps before
+  the true end (`125M`: 680 of 699; `360M`: 450 of 456). The `[done] steps=…` line is authoritative.
