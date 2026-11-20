@@ -1,0 +1,21 @@
+{
+  "train": {
+    "docs": 70233,
+    "chars": 176394668,
+    "tokens": 112503579,
+    "chars_per_token": 1.568
+  },
+  "val": {
+    "docs": 716,
+    "chars": 1878482,
+    "tokens": 1199254,
+    "chars_per_token": 1.566
+  },
+  "test": {
+    "docs": 716,
+    "chars": 1734151,
+    "tokens": 1103986,
+    "chars_per_token": 1.571
+  },
+  "vocab_size": 32000
+}

@@ -1,0 +1,245 @@
+[init] loaded /root/autodl-tmp/work/runs/125m/latest.pt (new special-token rows are randomly initialised)
+[data] train=23500 val=500 steps/epoch=735 total=2205
+epoch 0 step 10/2205 loss 5.1762 lr 2.00e-05
+epoch 0 step 20/2205 loss 5.2474 lr 4.00e-05
+epoch 0 step 30/2205 loss 4.8850 lr 6.00e-05
+epoch 0 step 40/2205 loss 4.7516 lr 8.00e-05
+epoch 0 step 50/2205 loss 5.1206 lr 1.00e-04
+epoch 0 step 60/2205 loss 4.9064 lr 1.00e-04
+epoch 0 step 70/2205 loss 4.6316 lr 1.00e-04
+epoch 0 step 80/2205 loss 4.8115 lr 1.00e-04
+epoch 0 step 90/2205 loss 4.5994 lr 9.99e-05
+epoch 0 step 100/2205 loss 4.4560 lr 9.99e-05
+[eval] step 100 val_loss 4.8698 ppl 130.30
+epoch 0 step 110/2205 loss 4.7143 lr 9.98e-05
+epoch 0 step 120/2205 loss 4.9201 lr 9.98e-05
+epoch 0 step 130/2205 loss 4.4623 lr 9.97e-05
+epoch 0 step 140/2205 loss 4.9765 lr 9.96e-05
+epoch 0 step 150/2205 loss 4.5666 lr 9.95e-05
+epoch 0 step 160/2205 loss 4.8478 lr 9.94e-05
+epoch 0 step 170/2205 loss 4.7547 lr 9.93e-05
+epoch 0 step 180/2205 loss 4.5331 lr 9.92e-05
+epoch 0 step 190/2205 loss 4.9826 lr 9.91e-05
+epoch 0 step 200/2205 loss 4.3264 lr 9.89e-05
+[eval] step 200 val_loss 4.6649 ppl 106.15
+epoch 0 step 210/2205 loss 4.3450 lr 9.88e-05
+epoch 0 step 220/2205 loss 4.6477 lr 9.86e-05
+epoch 0 step 230/2205 loss 4.5220 lr 9.85e-05
+epoch 0 step 240/2205 loss 4.4649 lr 9.83e-05
+epoch 0 step 250/2205 loss 4.5584 lr 9.81e-05
+epoch 0 step 260/2205 loss 4.2673 lr 9.79e-05
+epoch 0 step 270/2205 loss 4.4902 lr 9.77e-05
+epoch 0 step 280/2205 loss 4.6154 lr 9.75e-05
+epoch 0 step 290/2205 loss 4.4212 lr 9.73e-05
+epoch 0 step 300/2205 loss 4.6446 lr 9.71e-05
+[eval] step 300 val_loss 4.6133 ppl 100.82
+epoch 0 step 310/2205 loss 4.6580 lr 9.68e-05
+epoch 0 step 320/2205 loss 4.3024 lr 9.66e-05
+epoch 0 step 330/2205 loss 4.6334 lr 9.63e-05
+epoch 0 step 340/2205 loss 4.4928 lr 9.61e-05
+epoch 0 step 350/2205 loss 4.5119 lr 9.58e-05
+epoch 0 step 360/2205 loss 4.4876 lr 9.55e-05
+epoch 0 step 370/2205 loss 4.4189 lr 9.52e-05
+epoch 0 step 380/2205 loss 4.9196 lr 9.49e-05
+epoch 0 step 390/2205 loss 4.5927 lr 9.46e-05
+epoch 0 step 400/2205 loss 4.2151 lr 9.43e-05
+[eval] step 400 val_loss 4.3607 ppl 78.31
+epoch 0 step 410/2205 loss 4.4763 lr 9.40e-05
+epoch 0 step 420/2205 loss 4.3267 lr 9.36e-05
+epoch 0 step 430/2205 loss 4.2570 lr 9.33e-05
+epoch 0 step 440/2205 loss 4.3046 lr 9.30e-05
+epoch 0 step 450/2205 loss 4.7510 lr 9.26e-05
+epoch 0 step 460/2205 loss 4.3800 lr 9.22e-05
+epoch 0 step 470/2205 loss 4.3273 lr 9.19e-05
+epoch 0 step 480/2205 loss 4.0579 lr 9.15e-05
+epoch 0 step 490/2205 loss 4.4048 lr 9.11e-05
+epoch 0 step 500/2205 loss 4.6605 lr 9.07e-05
+[eval] step 500 val_loss 4.4079 ppl 82.10
+epoch 0 step 510/2205 loss 4.4007 lr 9.03e-05
+epoch 0 step 520/2205 loss 4.7485 lr 8.99e-05
+epoch 0 step 530/2205 loss 4.0332 lr 8.95e-05
+epoch 0 step 540/2205 loss 4.1899 lr 8.90e-05
+epoch 0 step 550/2205 loss 4.7837 lr 8.86e-05
+epoch 0 step 560/2205 loss 4.5479 lr 8.82e-05
+epoch 0 step 570/2205 loss 3.9154 lr 8.77e-05
+epoch 0 step 580/2205 loss 4.5785 lr 8.73e-05
+epoch 0 step 590/2205 loss 4.1942 lr 8.68e-05
+epoch 0 step 600/2205 loss 4.4254 lr 8.63e-05
+[eval] step 600 val_loss 4.1106 ppl 60.99
+epoch 0 step 610/2205 loss 4.5913 lr 8.59e-05
+epoch 0 step 620/2205 loss 4.3971 lr 8.54e-05
+epoch 0 step 630/2205 loss 3.7804 lr 8.49e-05
+epoch 0 step 640/2205 loss 4.5453 lr 8.44e-05
+epoch 0 step 650/2205 loss 4.4228 lr 8.39e-05
+epoch 0 step 660/2205 loss 4.3797 lr 8.34e-05
+epoch 0 step 670/2205 loss 4.5867 lr 8.29e-05
+epoch 0 step 680/2205 loss 4.0938 lr 8.24e-05
+epoch 0 step 690/2205 loss 4.4631 lr 8.18e-05
+epoch 0 step 700/2205 loss 4.3916 lr 8.13e-05
+[eval] step 700 val_loss 4.3676 ppl 78.85
+epoch 0 step 710/2205 loss 4.8255 lr 8.08e-05
+epoch 0 step 720/2205 loss 4.1133 lr 8.02e-05
+epoch 0 step 730/2205 loss 4.1034 lr 7.97e-05
+epoch 1 step 740/2205 loss 4.2147 lr 7.91e-05
+epoch 1 step 750/2205 loss 3.8746 lr 7.86e-05
+epoch 1 step 760/2205 loss 4.0782 lr 7.80e-05
+epoch 1 step 770/2205 loss 3.9859 lr 7.75e-05
+epoch 1 step 780/2205 loss 3.6752 lr 7.69e-05
+epoch 1 step 790/2205 loss 3.8064 lr 7.63e-05
+epoch 1 step 800/2205 loss 3.9665 lr 7.57e-05
+[eval] step 800 val_loss 4.3130 ppl 74.67
+epoch 1 step 810/2205 loss 3.5122 lr 7.52e-05
+epoch 1 step 820/2205 loss 4.1110 lr 7.46e-05
+epoch 1 step 830/2205 loss 3.5979 lr 7.40e-05
+epoch 1 step 840/2205 loss 4.1886 lr 7.34e-05
+epoch 1 step 850/2205 loss 4.0657 lr 7.28e-05
+epoch 1 step 860/2205 loss 3.9784 lr 7.22e-05
+epoch 1 step 870/2205 loss 3.5644 lr 7.16e-05
+epoch 1 step 880/2205 loss 4.0901 lr 7.09e-05
+epoch 1 step 890/2205 loss 4.2888 lr 7.03e-05
+epoch 1 step 900/2205 loss 4.0692 lr 6.97e-05
+[eval] step 900 val_loss 4.0136 ppl 55.35
+epoch 1 step 910/2205 loss 3.3952 lr 6.91e-05
+epoch 1 step 920/2205 loss 3.9073 lr 6.85e-05
+epoch 1 step 930/2205 loss 3.5336 lr 6.78e-05
+epoch 1 step 940/2205 loss 3.8729 lr 6.72e-05
+epoch 1 step 950/2205 loss 3.8183 lr 6.66e-05
+epoch 1 step 960/2205 loss 4.0345 lr 6.59e-05
+epoch 1 step 970/2205 loss 3.2405 lr 6.53e-05
+epoch 1 step 980/2205 loss 3.6824 lr 6.47e-05
+epoch 1 step 990/2205 loss 3.8814 lr 6.40e-05
+epoch 1 step 1000/2205 loss 3.8601 lr 6.34e-05
+[eval] step 1000 val_loss 4.1293 ppl 62.13
+epoch 1 step 1010/2205 loss 3.7885 lr 6.27e-05
+epoch 1 step 1020/2205 loss 3.8486 lr 6.21e-05
+epoch 1 step 1030/2205 loss 3.8295 lr 6.14e-05
+epoch 1 step 1040/2205 loss 4.1238 lr 6.08e-05
+epoch 1 step 1050/2205 loss 4.1039 lr 6.01e-05
+epoch 1 step 1060/2205 loss 3.8762 lr 5.95e-05
+epoch 1 step 1070/2205 loss 4.0694 lr 5.88e-05
+epoch 1 step 1080/2205 loss 3.8718 lr 5.82e-05
+epoch 1 step 1090/2205 loss 3.8805 lr 5.75e-05
+epoch 1 step 1100/2205 loss 4.0458 lr 5.69e-05
+[eval] step 1100 val_loss 4.3220 ppl 75.34
+epoch 1 step 1110/2205 loss 4.2783 lr 5.62e-05
+epoch 1 step 1120/2205 loss 3.7202 lr 5.56e-05
+epoch 1 step 1130/2205 loss 4.0098 lr 5.49e-05
+epoch 1 step 1140/2205 loss 3.8396 lr 5.42e-05
+epoch 1 step 1150/2205 loss 3.7397 lr 5.36e-05
+epoch 1 step 1160/2205 loss 3.9567 lr 5.29e-05
+epoch 1 step 1170/2205 loss 3.4642 lr 5.23e-05
+epoch 1 step 1180/2205 loss 4.3043 lr 5.16e-05
+epoch 1 step 1190/2205 loss 4.2154 lr 5.10e-05
+epoch 1 step 1200/2205 loss 3.6747 lr 5.03e-05
+[eval] step 1200 val_loss 4.2968 ppl 73.46
+epoch 1 step 1210/2205 loss 3.9591 lr 4.97e-05
+epoch 1 step 1220/2205 loss 3.9656 lr 4.90e-05
+epoch 1 step 1230/2205 loss 4.0060 lr 4.84e-05
+epoch 1 step 1240/2205 loss 4.1547 lr 4.77e-05
+epoch 1 step 1250/2205 loss 3.6973 lr 4.71e-05
+epoch 1 step 1260/2205 loss 3.6198 lr 4.64e-05
+epoch 1 step 1270/2205 loss 4.3148 lr 4.58e-05
+epoch 1 step 1280/2205 loss 4.0373 lr 4.51e-05
+epoch 1 step 1290/2205 loss 3.2228 lr 4.45e-05
+epoch 1 step 1300/2205 loss 3.1319 lr 4.39e-05
+[eval] step 1300 val_loss 4.2690 ppl 71.45
+epoch 1 step 1310/2205 loss 3.7020 lr 4.32e-05
+epoch 1 step 1320/2205 loss 3.9405 lr 4.26e-05
+epoch 1 step 1330/2205 loss 4.0506 lr 4.20e-05
+epoch 1 step 1340/2205 loss 3.7455 lr 4.13e-05
+epoch 1 step 1350/2205 loss 3.6668 lr 4.07e-05
+epoch 1 step 1360/2205 loss 3.6701 lr 4.01e-05
+epoch 1 step 1370/2205 loss 4.2653 lr 3.95e-05
+epoch 1 step 1380/2205 loss 3.7325 lr 3.89e-05
+epoch 1 step 1390/2205 loss 4.1384 lr 3.83e-05
+epoch 1 step 1400/2205 loss 4.1648 lr 3.77e-05
+[eval] step 1400 val_loss 4.0123 ppl 55.27
+epoch 1 step 1410/2205 loss 4.1567 lr 3.70e-05
+epoch 1 step 1420/2205 loss 3.8759 lr 3.64e-05
+epoch 1 step 1430/2205 loss 3.8677 lr 3.59e-05
+epoch 1 step 1440/2205 loss 4.2204 lr 3.53e-05
+epoch 1 step 1450/2205 loss 3.8909 lr 3.47e-05
+epoch 1 step 1460/2205 loss 4.0324 lr 3.41e-05
+epoch 1 step 1470/2205 loss 3.5541 lr 3.35e-05
+epoch 2 step 1480/2205 loss 3.2868 lr 3.29e-05
+epoch 2 step 1490/2205 loss 3.6011 lr 3.24e-05
+epoch 2 step 1500/2205 loss 3.4891 lr 3.18e-05
+[eval] step 1500 val_loss 4.0463 ppl 57.18
+epoch 2 step 1510/2205 loss 3.8682 lr 3.12e-05
+epoch 2 step 1520/2205 loss 3.4576 lr 3.07e-05
+epoch 2 step 1530/2205 loss 3.5268 lr 3.01e-05
+epoch 2 step 1540/2205 loss 3.0266 lr 2.96e-05
+epoch 2 step 1550/2205 loss 3.3925 lr 2.91e-05
+epoch 2 step 1560/2205 loss 3.0906 lr 2.85e-05
+epoch 2 step 1570/2205 loss 3.4976 lr 2.80e-05
+epoch 2 step 1580/2205 loss 3.7659 lr 2.75e-05
+epoch 2 step 1590/2205 loss 3.3861 lr 2.70e-05
+epoch 2 step 1600/2205 loss 3.2354 lr 2.64e-05
+[eval] step 1600 val_loss 3.9590 ppl 52.40
+epoch 2 step 1610/2205 loss 3.6074 lr 2.59e-05
+epoch 2 step 1620/2205 loss 3.1096 lr 2.54e-05
+epoch 2 step 1630/2205 loss 3.3999 lr 2.50e-05
+epoch 2 step 1640/2205 loss 3.3594 lr 2.45e-05
+epoch 2 step 1650/2205 loss 3.3833 lr 2.40e-05
+epoch 2 step 1660/2205 loss 3.3520 lr 2.35e-05
+epoch 2 step 1670/2205 loss 3.3330 lr 2.31e-05
+epoch 2 step 1680/2205 loss 3.6525 lr 2.26e-05
+epoch 2 step 1690/2205 loss 3.8791 lr 2.21e-05
+epoch 2 step 1700/2205 loss 3.7347 lr 2.17e-05
+[eval] step 1700 val_loss 4.1698 ppl 64.70
+epoch 2 step 1710/2205 loss 3.2901 lr 2.13e-05
+epoch 2 step 1720/2205 loss 3.5766 lr 2.08e-05
+epoch 2 step 1730/2205 loss 3.9515 lr 2.04e-05
+epoch 2 step 1740/2205 loss 3.7702 lr 2.00e-05
+epoch 2 step 1750/2205 loss 3.0969 lr 1.96e-05
+epoch 2 step 1760/2205 loss 3.3526 lr 1.92e-05
+epoch 2 step 1770/2205 loss 3.6046 lr 1.88e-05
+epoch 2 step 1780/2205 loss 3.8563 lr 1.84e-05
+epoch 2 step 1790/2205 loss 3.6283 lr 1.80e-05
+epoch 2 step 1800/2205 loss 3.1465 lr 1.77e-05
+[eval] step 1800 val_loss 4.3463 ppl 77.19
+epoch 2 step 1810/2205 loss 3.8730 lr 1.73e-05
+epoch 2 step 1820/2205 loss 3.6231 lr 1.69e-05
+epoch 2 step 1830/2205 loss 3.4335 lr 1.66e-05
+epoch 2 step 1840/2205 loss 3.3532 lr 1.63e-05
+epoch 2 step 1850/2205 loss 3.2428 lr 1.59e-05
+epoch 2 step 1860/2205 loss 3.1478 lr 1.56e-05
+epoch 2 step 1870/2205 loss 3.2432 lr 1.53e-05
+epoch 2 step 1880/2205 loss 3.2366 lr 1.50e-05
+epoch 2 step 1890/2205 loss 3.3550 lr 1.47e-05
+epoch 2 step 1900/2205 loss 3.2510 lr 1.44e-05
+[eval] step 1900 val_loss 4.0039 ppl 54.81
+epoch 2 step 1910/2205 loss 3.8178 lr 1.41e-05
+epoch 2 step 1920/2205 loss 3.7056 lr 1.39e-05
+epoch 2 step 1930/2205 loss 3.2886 lr 1.36e-05
+epoch 2 step 1940/2205 loss 3.4016 lr 1.33e-05
+epoch 2 step 1950/2205 loss 4.0864 lr 1.31e-05
+epoch 2 step 1960/2205 loss 3.7977 lr 1.29e-05
+epoch 2 step 1970/2205 loss 3.0481 lr 1.26e-05
+epoch 2 step 1980/2205 loss 3.7508 lr 1.24e-05
+epoch 2 step 1990/2205 loss 3.5092 lr 1.22e-05
+epoch 2 step 2000/2205 loss 3.3587 lr 1.20e-05
+[eval] step 2000 val_loss 3.8069 ppl 45.01
+epoch 2 step 2010/2205 loss 3.4592 lr 1.18e-05
+epoch 2 step 2020/2205 loss 3.9294 lr 1.16e-05
+epoch 2 step 2030/2205 loss 3.2878 lr 1.15e-05
+epoch 2 step 2040/2205 loss 3.6729 lr 1.13e-05
+epoch 2 step 2050/2205 loss 3.3304 lr 1.12e-05
+epoch 2 step 2060/2205 loss 3.5250 lr 1.10e-05
+epoch 2 step 2070/2205 loss 3.1208 lr 1.09e-05
+epoch 2 step 2080/2205 loss 3.5819 lr 1.08e-05
+epoch 2 step 2090/2205 loss 3.4588 lr 1.06e-05
+epoch 2 step 2100/2205 loss 3.5402 lr 1.05e-05
+[eval] step 2100 val_loss 4.1457 ppl 63.16
+epoch 2 step 2110/2205 loss 3.7346 lr 1.04e-05
+epoch 2 step 2120/2205 loss 3.3579 lr 1.04e-05
+epoch 2 step 2130/2205 loss 3.3667 lr 1.03e-05
+epoch 2 step 2140/2205 loss 3.8882 lr 1.02e-05
+epoch 2 step 2150/2205 loss 3.8307 lr 1.01e-05
+epoch 2 step 2160/2205 loss 3.6158 lr 1.01e-05
+epoch 2 step 2170/2205 loss 3.3614 lr 1.01e-05
+epoch 2 step 2180/2205 loss 3.5326 lr 1.00e-05
+epoch 2 step 2190/2205 loss 3.5221 lr 1.00e-05
+epoch 2 step 2200/2205 loss 3.4081 lr 1.00e-05
+[eval] step 2200 val_loss 4.1954 ppl 66.38
+[done] 2205

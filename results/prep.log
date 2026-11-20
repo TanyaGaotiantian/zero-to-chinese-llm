@@ -1,0 +1,631 @@
+[2026-11-20 00:22:35] === 1a. zhwiki parquet -> jsonl ===
+[parquet] train-00000-of-00006.parquet -> data/interim/extracted/zhwiki/train-00000-of-00006.jsonl (total 230792)
+[parquet] train-00001-of-00006.parquet -> data/interim/extracted/zhwiki/train-00001-of-00006.jsonl (total 461584)
+[parquet] done docs=461584
+[2026-11-20 00:22:58] === 1b. wikiextractor for zhwikinews / zhwikivoyage ===
+[2026-11-20 00:23:17] === 2. clean ===
+{
+  "raw": 485894,
+  "kept": 283923,
+  "too_long": 1098,
+  "too_short": 180799,
+  "low_zh_ratio": 18457,
+  "low_diversity": 55,
+  "repeated_lines": 1562,
+  "kept_ratio": 0.5843
+}
+[2026-11-20 00:24:59] === 3. dedup ===
+{"kept": 283492, "dropped_exact": 5, "dropped_near": 426}
+[2026-11-20 00:28:37] === 4. 180M-char budget sample ===
+dedup docs 283492 chars 412161157
+selected 123708 chars 180000447
+[2026-11-20 00:28:42] === 5. split 98/1/1 ===
+train 121234
+val 1237
+test 1237
+[2026-11-20 00:28:51] === 6. tokenizer ===
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+W0000 00:00:1795105731.489858    2459 spec_parser.h:262] --train_extremely_large_corpus is deprecated and ignored.
+I0000 00:00:1795105731.492624    2459 sentencepiece_trainer.cc:149] Starts training with : 
+trainer_spec {
+  input: data/processed/splits/train.txt
+  input_format: 
+  model_prefix: data/processed/tokenizer/zh_bpe
+  model_type: BPE
+  vocab_size: 32000
+  character_coverage: 0.9995
+  input_sentence_size: 0
+  shuffle_input_sentence: 1
+  seed_sentencepiece_size: 1000000
+  shrinking_factor: 0.75
+  max_sentence_length: 4192
+  num_threads: 12
+  num_sub_iterations: 2
+  max_sentencepiece_length: 16
+  split_by_unicode_script: 1
+  split_by_number: 1
+  split_by_whitespace: 1
+  split_digits: 0
+  pretokenization_delimiter: 
+  treat_whitespace_as_suffix: 0
+  allow_whitespace_only_pieces: 0
+  required_chars: 
+  byte_fallback: 1
+  auto_character_coverage: 0
+  vocabulary_output_piece_score: 1
+  seed_sentencepieces_file: 
+  hard_vocab_limit: 1
+  use_all_vocab: 0
+  unk_id: 1
+  bos_id: -1
+  eos_id: 2
+  pad_id: 0
+  unk_piece: <unk>
+  bos_piece: <s>
+  eos_piece: </s>
+  pad_piece: <pad>
+  unk_surface:  ⁇ 
+}
+normalizer_spec {
+  name: nmt_nfkc
+  add_dummy_prefix: 1
+  remove_extra_whitespaces: 1
+  escape_whitespaces: 1
+  normalization_rule_tsv: 
+}
+denormalizer_spec {}
+I0000 00:00:1795105731.492648    2459 trainer_interface.cc:389] SentenceIterator is not specified. Using MultiFileSentenceIterator.
+I0000 00:00:1795105731.492671    2459 trainer_interface.cc:232] Loading corpus: data/processed/splits/train.txt
+W0000 00:00:1795105731.492706    2459 trainer_interface.cc:419] Found too long line (19991 > 4192).
+W0000 00:00:1795105731.492716    2459 trainer_interface.cc:421] Too long lines are skipped in the training.
+W0000 00:00:1795105731.492719    2459 trainer_interface.cc:422] The maximum length can be changed with --max_sentence_length=<size> flag.
+I0000 00:00:1795105731.819417    2459 trainer_interface.cc:446] Loaded all 91688 sentences
+I0000 00:00:1795105731.819441    2459 trainer_interface.cc:453] Skipped 29546 too long sentences.
+I0000 00:00:1795105731.819670    2459 trainer_interface.cc:461] Adding meta_piece: <pad>
+I0000 00:00:1795105731.819674    2459 trainer_interface.cc:461] Adding meta_piece: <unk>
+I0000 00:00:1795105731.819676    2459 trainer_interface.cc:461] Adding meta_piece: </s>
+I0000 00:00:1795105731.819678    2459 trainer_interface.cc:461] Adding meta_piece: <0x00>
+I0000 00:00:1795105731.819680    2459 trainer_interface.cc:461] Adding meta_piece: <0x01>
+I0000 00:00:1795105731.819683    2459 trainer_interface.cc:461] Adding meta_piece: <0x02>
+I0000 00:00:1795105731.819684    2459 trainer_interface.cc:461] Adding meta_piece: <0x03>
+I0000 00:00:1795105731.819686    2459 trainer_interface.cc:461] Adding meta_piece: <0x04>
+I0000 00:00:1795105731.819690    2459 trainer_interface.cc:461] Adding meta_piece: <0x05>
+I0000 00:00:1795105731.819691    2459 trainer_interface.cc:461] Adding meta_piece: <0x06>
+I0000 00:00:1795105731.819693    2459 trainer_interface.cc:461] Adding meta_piece: <0x07>
+I0000 00:00:1795105731.819695    2459 trainer_interface.cc:461] Adding meta_piece: <0x08>
+I0000 00:00:1795105731.819710    2459 trainer_interface.cc:461] Adding meta_piece: <0x09>
+I0000 00:00:1795105731.819712    2459 trainer_interface.cc:461] Adding meta_piece: <0x0A>
+I0000 00:00:1795105731.819714    2459 trainer_interface.cc:461] Adding meta_piece: <0x0B>
+I0000 00:00:1795105731.819716    2459 trainer_interface.cc:461] Adding meta_piece: <0x0C>
+I0000 00:00:1795105731.819720    2459 trainer_interface.cc:461] Adding meta_piece: <0x0D>
+I0000 00:00:1795105731.819721    2459 trainer_interface.cc:461] Adding meta_piece: <0x0E>
+I0000 00:00:1795105731.819723    2459 trainer_interface.cc:461] Adding meta_piece: <0x0F>
+I0000 00:00:1795105731.819725    2459 trainer_interface.cc:461] Adding meta_piece: <0x10>
+I0000 00:00:1795105731.819727    2459 trainer_interface.cc:461] Adding meta_piece: <0x11>
+I0000 00:00:1795105731.819728    2459 trainer_interface.cc:461] Adding meta_piece: <0x12>
+I0000 00:00:1795105731.819730    2459 trainer_interface.cc:461] Adding meta_piece: <0x13>
+I0000 00:00:1795105731.819732    2459 trainer_interface.cc:461] Adding meta_piece: <0x14>
+I0000 00:00:1795105731.819736    2459 trainer_interface.cc:461] Adding meta_piece: <0x15>
+I0000 00:00:1795105731.819737    2459 trainer_interface.cc:461] Adding meta_piece: <0x16>
+I0000 00:00:1795105731.819739    2459 trainer_interface.cc:461] Adding meta_piece: <0x17>
+I0000 00:00:1795105731.819741    2459 trainer_interface.cc:461] Adding meta_piece: <0x18>
+I0000 00:00:1795105731.819743    2459 trainer_interface.cc:461] Adding meta_piece: <0x19>
+I0000 00:00:1795105731.819744    2459 trainer_interface.cc:461] Adding meta_piece: <0x1A>
+I0000 00:00:1795105731.819746    2459 trainer_interface.cc:461] Adding meta_piece: <0x1B>
+I0000 00:00:1795105731.819748    2459 trainer_interface.cc:461] Adding meta_piece: <0x1C>
+I0000 00:00:1795105731.819752    2459 trainer_interface.cc:461] Adding meta_piece: <0x1D>
+I0000 00:00:1795105731.819754    2459 trainer_interface.cc:461] Adding meta_piece: <0x1E>
+I0000 00:00:1795105731.819755    2459 trainer_interface.cc:461] Adding meta_piece: <0x1F>
+I0000 00:00:1795105731.819757    2459 trainer_interface.cc:461] Adding meta_piece: <0x20>
+I0000 00:00:1795105731.819759    2459 trainer_interface.cc:461] Adding meta_piece: <0x21>
+I0000 00:00:1795105731.819761    2459 trainer_interface.cc:461] Adding meta_piece: <0x22>
+I0000 00:00:1795105731.819763    2459 trainer_interface.cc:461] Adding meta_piece: <0x23>
+I0000 00:00:1795105731.819764    2459 trainer_interface.cc:461] Adding meta_piece: <0x24>
+I0000 00:00:1795105731.819768    2459 trainer_interface.cc:461] Adding meta_piece: <0x25>
+I0000 00:00:1795105731.819770    2459 trainer_interface.cc:461] Adding meta_piece: <0x26>
+I0000 00:00:1795105731.819771    2459 trainer_interface.cc:461] Adding meta_piece: <0x27>
+I0000 00:00:1795105731.819773    2459 trainer_interface.cc:461] Adding meta_piece: <0x28>
+I0000 00:00:1795105731.819775    2459 trainer_interface.cc:461] Adding meta_piece: <0x29>
+I0000 00:00:1795105731.819777    2459 trainer_interface.cc:461] Adding meta_piece: <0x2A>
+I0000 00:00:1795105731.819778    2459 trainer_interface.cc:461] Adding meta_piece: <0x2B>
+I0000 00:00:1795105731.819780    2459 trainer_interface.cc:461] Adding meta_piece: <0x2C>
+I0000 00:00:1795105731.819783    2459 trainer_interface.cc:461] Adding meta_piece: <0x2D>
+I0000 00:00:1795105731.819785    2459 trainer_interface.cc:461] Adding meta_piece: <0x2E>
+I0000 00:00:1795105731.819787    2459 trainer_interface.cc:461] Adding meta_piece: <0x2F>
+I0000 00:00:1795105731.819789    2459 trainer_interface.cc:461] Adding meta_piece: <0x30>
+I0000 00:00:1795105731.819790    2459 trainer_interface.cc:461] Adding meta_piece: <0x31>
+I0000 00:00:1795105731.819792    2459 trainer_interface.cc:461] Adding meta_piece: <0x32>
+I0000 00:00:1795105731.819794    2459 trainer_interface.cc:461] Adding meta_piece: <0x33>
+I0000 00:00:1795105731.819796    2459 trainer_interface.cc:461] Adding meta_piece: <0x34>
+I0000 00:00:1795105731.819799    2459 trainer_interface.cc:461] Adding meta_piece: <0x35>
+I0000 00:00:1795105731.819805    2459 trainer_interface.cc:461] Adding meta_piece: <0x36>
+I0000 00:00:1795105731.819807    2459 trainer_interface.cc:461] Adding meta_piece: <0x37>
+I0000 00:00:1795105731.819808    2459 trainer_interface.cc:461] Adding meta_piece: <0x38>
+I0000 00:00:1795105731.819810    2459 trainer_interface.cc:461] Adding meta_piece: <0x39>
+I0000 00:00:1795105731.819812    2459 trainer_interface.cc:461] Adding meta_piece: <0x3A>
+I0000 00:00:1795105731.819814    2459 trainer_interface.cc:461] Adding meta_piece: <0x3B>
+I0000 00:00:1795105731.819816    2459 trainer_interface.cc:461] Adding meta_piece: <0x3C>
+I0000 00:00:1795105731.819820    2459 trainer_interface.cc:461] Adding meta_piece: <0x3D>
+I0000 00:00:1795105731.819821    2459 trainer_interface.cc:461] Adding meta_piece: <0x3E>
+I0000 00:00:1795105731.819823    2459 trainer_interface.cc:461] Adding meta_piece: <0x3F>
+I0000 00:00:1795105731.819825    2459 trainer_interface.cc:461] Adding meta_piece: <0x40>
+I0000 00:00:1795105731.819827    2459 trainer_interface.cc:461] Adding meta_piece: <0x41>
+I0000 00:00:1795105731.819828    2459 trainer_interface.cc:461] Adding meta_piece: <0x42>
+I0000 00:00:1795105731.819830    2459 trainer_interface.cc:461] Adding meta_piece: <0x43>
+I0000 00:00:1795105731.819832    2459 trainer_interface.cc:461] Adding meta_piece: <0x44>
+I0000 00:00:1795105731.819835    2459 trainer_interface.cc:461] Adding meta_piece: <0x45>
+I0000 00:00:1795105731.819837    2459 trainer_interface.cc:461] Adding meta_piece: <0x46>
+I0000 00:00:1795105731.819839    2459 trainer_interface.cc:461] Adding meta_piece: <0x47>
+I0000 00:00:1795105731.819840    2459 trainer_interface.cc:461] Adding meta_piece: <0x48>
+I0000 00:00:1795105731.819842    2459 trainer_interface.cc:461] Adding meta_piece: <0x49>
+I0000 00:00:1795105731.819844    2459 trainer_interface.cc:461] Adding meta_piece: <0x4A>
+I0000 00:00:1795105731.819846    2459 trainer_interface.cc:461] Adding meta_piece: <0x4B>
+I0000 00:00:1795105731.819847    2459 trainer_interface.cc:461] Adding meta_piece: <0x4C>
+I0000 00:00:1795105731.819851    2459 trainer_interface.cc:461] Adding meta_piece: <0x4D>
+I0000 00:00:1795105731.819853    2459 trainer_interface.cc:461] Adding meta_piece: <0x4E>
+I0000 00:00:1795105731.819854    2459 trainer_interface.cc:461] Adding meta_piece: <0x4F>
+I0000 00:00:1795105731.819856    2459 trainer_interface.cc:461] Adding meta_piece: <0x50>
+I0000 00:00:1795105731.819858    2459 trainer_interface.cc:461] Adding meta_piece: <0x51>
+I0000 00:00:1795105731.819860    2459 trainer_interface.cc:461] Adding meta_piece: <0x52>
+I0000 00:00:1795105731.819861    2459 trainer_interface.cc:461] Adding meta_piece: <0x53>
+I0000 00:00:1795105731.819863    2459 trainer_interface.cc:461] Adding meta_piece: <0x54>
+I0000 00:00:1795105731.819866    2459 trainer_interface.cc:461] Adding meta_piece: <0x55>
+I0000 00:00:1795105731.819868    2459 trainer_interface.cc:461] Adding meta_piece: <0x56>
+I0000 00:00:1795105731.819870    2459 trainer_interface.cc:461] Adding meta_piece: <0x57>
+I0000 00:00:1795105731.819872    2459 trainer_interface.cc:461] Adding meta_piece: <0x58>
+I0000 00:00:1795105731.819873    2459 trainer_interface.cc:461] Adding meta_piece: <0x59>
+I0000 00:00:1795105731.819875    2459 trainer_interface.cc:461] Adding meta_piece: <0x5A>
+I0000 00:00:1795105731.819877    2459 trainer_interface.cc:461] Adding meta_piece: <0x5B>
+I0000 00:00:1795105731.819879    2459 trainer_interface.cc:461] Adding meta_piece: <0x5C>
+I0000 00:00:1795105731.819882    2459 trainer_interface.cc:461] Adding meta_piece: <0x5D>
+I0000 00:00:1795105731.819884    2459 trainer_interface.cc:461] Adding meta_piece: <0x5E>
+I0000 00:00:1795105731.819886    2459 trainer_interface.cc:461] Adding meta_piece: <0x5F>
+I0000 00:00:1795105731.819888    2459 trainer_interface.cc:461] Adding meta_piece: <0x60>
+I0000 00:00:1795105731.819889    2459 trainer_interface.cc:461] Adding meta_piece: <0x61>
+I0000 00:00:1795105731.819891    2459 trainer_interface.cc:461] Adding meta_piece: <0x62>
+I0000 00:00:1795105731.819893    2459 trainer_interface.cc:461] Adding meta_piece: <0x63>
+I0000 00:00:1795105731.819897    2459 trainer_interface.cc:461] Adding meta_piece: <0x64>
+I0000 00:00:1795105731.819901    2459 trainer_interface.cc:461] Adding meta_piece: <0x65>
+I0000 00:00:1795105731.819903    2459 trainer_interface.cc:461] Adding meta_piece: <0x66>
+I0000 00:00:1795105731.819904    2459 trainer_interface.cc:461] Adding meta_piece: <0x67>
+I0000 00:00:1795105731.819906    2459 trainer_interface.cc:461] Adding meta_piece: <0x68>
+I0000 00:00:1795105731.819908    2459 trainer_interface.cc:461] Adding meta_piece: <0x69>
+I0000 00:00:1795105731.819910    2459 trainer_interface.cc:461] Adding meta_piece: <0x6A>
+I0000 00:00:1795105731.819912    2459 trainer_interface.cc:461] Adding meta_piece: <0x6B>
+I0000 00:00:1795105731.819913    2459 trainer_interface.cc:461] Adding meta_piece: <0x6C>
+I0000 00:00:1795105731.819917    2459 trainer_interface.cc:461] Adding meta_piece: <0x6D>
+I0000 00:00:1795105731.819918    2459 trainer_interface.cc:461] Adding meta_piece: <0x6E>
+I0000 00:00:1795105731.819920    2459 trainer_interface.cc:461] Adding meta_piece: <0x6F>
+I0000 00:00:1795105731.819922    2459 trainer_interface.cc:461] Adding meta_piece: <0x70>
+I0000 00:00:1795105731.819924    2459 trainer_interface.cc:461] Adding meta_piece: <0x71>
+I0000 00:00:1795105731.819926    2459 trainer_interface.cc:461] Adding meta_piece: <0x72>
+I0000 00:00:1795105731.819927    2459 trainer_interface.cc:461] Adding meta_piece: <0x73>
+I0000 00:00:1795105731.819929    2459 trainer_interface.cc:461] Adding meta_piece: <0x74>
+I0000 00:00:1795105731.819932    2459 trainer_interface.cc:461] Adding meta_piece: <0x75>
+I0000 00:00:1795105731.819934    2459 trainer_interface.cc:461] Adding meta_piece: <0x76>
+I0000 00:00:1795105731.819936    2459 trainer_interface.cc:461] Adding meta_piece: <0x77>
+I0000 00:00:1795105731.819938    2459 trainer_interface.cc:461] Adding meta_piece: <0x78>
+I0000 00:00:1795105731.819939    2459 trainer_interface.cc:461] Adding meta_piece: <0x79>
+I0000 00:00:1795105731.819941    2459 trainer_interface.cc:461] Adding meta_piece: <0x7A>
+I0000 00:00:1795105731.819943    2459 trainer_interface.cc:461] Adding meta_piece: <0x7B>
+I0000 00:00:1795105731.819945    2459 trainer_interface.cc:461] Adding meta_piece: <0x7C>
+I0000 00:00:1795105731.819948    2459 trainer_interface.cc:461] Adding meta_piece: <0x7D>
+I0000 00:00:1795105731.819950    2459 trainer_interface.cc:461] Adding meta_piece: <0x7E>
+I0000 00:00:1795105731.819952    2459 trainer_interface.cc:461] Adding meta_piece: <0x7F>
+I0000 00:00:1795105731.819953    2459 trainer_interface.cc:461] Adding meta_piece: <0x80>
+I0000 00:00:1795105731.819955    2459 trainer_interface.cc:461] Adding meta_piece: <0x81>
+I0000 00:00:1795105731.819957    2459 trainer_interface.cc:461] Adding meta_piece: <0x82>
+I0000 00:00:1795105731.819959    2459 trainer_interface.cc:461] Adding meta_piece: <0x83>
+I0000 00:00:1795105731.819961    2459 trainer_interface.cc:461] Adding meta_piece: <0x84>
+I0000 00:00:1795105731.819964    2459 trainer_interface.cc:461] Adding meta_piece: <0x85>
+I0000 00:00:1795105731.819966    2459 trainer_interface.cc:461] Adding meta_piece: <0x86>
+I0000 00:00:1795105731.819967    2459 trainer_interface.cc:461] Adding meta_piece: <0x87>
+I0000 00:00:1795105731.819969    2459 trainer_interface.cc:461] Adding meta_piece: <0x88>
+I0000 00:00:1795105731.819971    2459 trainer_interface.cc:461] Adding meta_piece: <0x89>
+I0000 00:00:1795105731.819973    2459 trainer_interface.cc:461] Adding meta_piece: <0x8A>
+I0000 00:00:1795105731.819974    2459 trainer_interface.cc:461] Adding meta_piece: <0x8B>
+I0000 00:00:1795105731.819976    2459 trainer_interface.cc:461] Adding meta_piece: <0x8C>
+I0000 00:00:1795105731.819979    2459 trainer_interface.cc:461] Adding meta_piece: <0x8D>
+I0000 00:00:1795105731.819981    2459 trainer_interface.cc:461] Adding meta_piece: <0x8E>
+I0000 00:00:1795105731.819983    2459 trainer_interface.cc:461] Adding meta_piece: <0x8F>
+I0000 00:00:1795105731.819985    2459 trainer_interface.cc:461] Adding meta_piece: <0x90>
+I0000 00:00:1795105731.819989    2459 trainer_interface.cc:461] Adding meta_piece: <0x91>
+I0000 00:00:1795105731.819991    2459 trainer_interface.cc:461] Adding meta_piece: <0x92>
+I0000 00:00:1795105731.819993    2459 trainer_interface.cc:461] Adding meta_piece: <0x93>
+I0000 00:00:1795105731.819994    2459 trainer_interface.cc:461] Adding meta_piece: <0x94>
+I0000 00:00:1795105731.819997    2459 trainer_interface.cc:461] Adding meta_piece: <0x95>
+I0000 00:00:1795105731.819999    2459 trainer_interface.cc:461] Adding meta_piece: <0x96>
+I0000 00:00:1795105731.820001    2459 trainer_interface.cc:461] Adding meta_piece: <0x97>
+I0000 00:00:1795105731.820003    2459 trainer_interface.cc:461] Adding meta_piece: <0x98>
+I0000 00:00:1795105731.820004    2459 trainer_interface.cc:461] Adding meta_piece: <0x99>
+I0000 00:00:1795105731.820006    2459 trainer_interface.cc:461] Adding meta_piece: <0x9A>
+I0000 00:00:1795105731.820008    2459 trainer_interface.cc:461] Adding meta_piece: <0x9B>
+I0000 00:00:1795105731.820010    2459 trainer_interface.cc:461] Adding meta_piece: <0x9C>
+I0000 00:00:1795105731.820013    2459 trainer_interface.cc:461] Adding meta_piece: <0x9D>
+I0000 00:00:1795105731.820014    2459 trainer_interface.cc:461] Adding meta_piece: <0x9E>
+I0000 00:00:1795105731.820016    2459 trainer_interface.cc:461] Adding meta_piece: <0x9F>
+I0000 00:00:1795105731.820018    2459 trainer_interface.cc:461] Adding meta_piece: <0xA0>
+I0000 00:00:1795105731.820020    2459 trainer_interface.cc:461] Adding meta_piece: <0xA1>
+I0000 00:00:1795105731.820021    2459 trainer_interface.cc:461] Adding meta_piece: <0xA2>
+I0000 00:00:1795105731.820023    2459 trainer_interface.cc:461] Adding meta_piece: <0xA3>
+I0000 00:00:1795105731.820025    2459 trainer_interface.cc:461] Adding meta_piece: <0xA4>
+I0000 00:00:1795105731.820028    2459 trainer_interface.cc:461] Adding meta_piece: <0xA5>
+I0000 00:00:1795105731.820030    2459 trainer_interface.cc:461] Adding meta_piece: <0xA6>
+I0000 00:00:1795105731.820032    2459 trainer_interface.cc:461] Adding meta_piece: <0xA7>
+I0000 00:00:1795105731.820033    2459 trainer_interface.cc:461] Adding meta_piece: <0xA8>
+I0000 00:00:1795105731.820035    2459 trainer_interface.cc:461] Adding meta_piece: <0xA9>
+I0000 00:00:1795105731.820037    2459 trainer_interface.cc:461] Adding meta_piece: <0xAA>
+I0000 00:00:1795105731.820039    2459 trainer_interface.cc:461] Adding meta_piece: <0xAB>
+I0000 00:00:1795105731.820040    2459 trainer_interface.cc:461] Adding meta_piece: <0xAC>
+I0000 00:00:1795105731.820044    2459 trainer_interface.cc:461] Adding meta_piece: <0xAD>
+I0000 00:00:1795105731.820046    2459 trainer_interface.cc:461] Adding meta_piece: <0xAE>
+I0000 00:00:1795105731.820048    2459 trainer_interface.cc:461] Adding meta_piece: <0xAF>
+I0000 00:00:1795105731.820049    2459 trainer_interface.cc:461] Adding meta_piece: <0xB0>
+I0000 00:00:1795105731.820051    2459 trainer_interface.cc:461] Adding meta_piece: <0xB1>
+I0000 00:00:1795105731.820053    2459 trainer_interface.cc:461] Adding meta_piece: <0xB2>
+I0000 00:00:1795105731.820055    2459 trainer_interface.cc:461] Adding meta_piece: <0xB3>
+I0000 00:00:1795105731.820056    2459 trainer_interface.cc:461] Adding meta_piece: <0xB4>
+I0000 00:00:1795105731.820060    2459 trainer_interface.cc:461] Adding meta_piece: <0xB5>
+I0000 00:00:1795105731.820061    2459 trainer_interface.cc:461] Adding meta_piece: <0xB6>
+I0000 00:00:1795105731.820063    2459 trainer_interface.cc:461] Adding meta_piece: <0xB7>
+I0000 00:00:1795105731.820065    2459 trainer_interface.cc:461] Adding meta_piece: <0xB8>
+I0000 00:00:1795105731.820067    2459 trainer_interface.cc:461] Adding meta_piece: <0xB9>
+I0000 00:00:1795105731.820068    2459 trainer_interface.cc:461] Adding meta_piece: <0xBA>
+I0000 00:00:1795105731.820070    2459 trainer_interface.cc:461] Adding meta_piece: <0xBB>
+I0000 00:00:1795105731.820072    2459 trainer_interface.cc:461] Adding meta_piece: <0xBC>
+I0000 00:00:1795105731.820075    2459 trainer_interface.cc:461] Adding meta_piece: <0xBD>
+I0000 00:00:1795105731.820077    2459 trainer_interface.cc:461] Adding meta_piece: <0xBE>
+I0000 00:00:1795105731.820081    2459 trainer_interface.cc:461] Adding meta_piece: <0xBF>
+I0000 00:00:1795105731.820083    2459 trainer_interface.cc:461] Adding meta_piece: <0xC0>
+I0000 00:00:1795105731.820084    2459 trainer_interface.cc:461] Adding meta_piece: <0xC1>
+I0000 00:00:1795105731.820086    2459 trainer_interface.cc:461] Adding meta_piece: <0xC2>
+I0000 00:00:1795105731.820088    2459 trainer_interface.cc:461] Adding meta_piece: <0xC3>
+I0000 00:00:1795105731.820090    2459 trainer_interface.cc:461] Adding meta_piece: <0xC4>
+I0000 00:00:1795105731.820093    2459 trainer_interface.cc:461] Adding meta_piece: <0xC5>
+I0000 00:00:1795105731.820094    2459 trainer_interface.cc:461] Adding meta_piece: <0xC6>
+I0000 00:00:1795105731.820096    2459 trainer_interface.cc:461] Adding meta_piece: <0xC7>
+I0000 00:00:1795105731.820098    2459 trainer_interface.cc:461] Adding meta_piece: <0xC8>
+I0000 00:00:1795105731.820100    2459 trainer_interface.cc:461] Adding meta_piece: <0xC9>
+I0000 00:00:1795105731.820101    2459 trainer_interface.cc:461] Adding meta_piece: <0xCA>
+I0000 00:00:1795105731.820103    2459 trainer_interface.cc:461] Adding meta_piece: <0xCB>
+I0000 00:00:1795105731.820105    2459 trainer_interface.cc:461] Adding meta_piece: <0xCC>
+I0000 00:00:1795105731.820108    2459 trainer_interface.cc:461] Adding meta_piece: <0xCD>
+I0000 00:00:1795105731.820110    2459 trainer_interface.cc:461] Adding meta_piece: <0xCE>
+I0000 00:00:1795105731.820112    2459 trainer_interface.cc:461] Adding meta_piece: <0xCF>
+I0000 00:00:1795105731.820114    2459 trainer_interface.cc:461] Adding meta_piece: <0xD0>
+I0000 00:00:1795105731.820115    2459 trainer_interface.cc:461] Adding meta_piece: <0xD1>
+I0000 00:00:1795105731.820117    2459 trainer_interface.cc:461] Adding meta_piece: <0xD2>
+I0000 00:00:1795105731.820119    2459 trainer_interface.cc:461] Adding meta_piece: <0xD3>
+I0000 00:00:1795105731.820121    2459 trainer_interface.cc:461] Adding meta_piece: <0xD4>
+I0000 00:00:1795105731.820124    2459 trainer_interface.cc:461] Adding meta_piece: <0xD5>
+I0000 00:00:1795105731.820125    2459 trainer_interface.cc:461] Adding meta_piece: <0xD6>
+I0000 00:00:1795105731.820127    2459 trainer_interface.cc:461] Adding meta_piece: <0xD7>
+I0000 00:00:1795105731.820129    2459 trainer_interface.cc:461] Adding meta_piece: <0xD8>
+I0000 00:00:1795105731.820131    2459 trainer_interface.cc:461] Adding meta_piece: <0xD9>
+I0000 00:00:1795105731.820132    2459 trainer_interface.cc:461] Adding meta_piece: <0xDA>
+I0000 00:00:1795105731.820134    2459 trainer_interface.cc:461] Adding meta_piece: <0xDB>
+I0000 00:00:1795105731.820136    2459 trainer_interface.cc:461] Adding meta_piece: <0xDC>
+I0000 00:00:1795105731.820139    2459 trainer_interface.cc:461] Adding meta_piece: <0xDD>
+I0000 00:00:1795105731.820141    2459 trainer_interface.cc:461] Adding meta_piece: <0xDE>
+I0000 00:00:1795105731.820143    2459 trainer_interface.cc:461] Adding meta_piece: <0xDF>
+I0000 00:00:1795105731.820145    2459 trainer_interface.cc:461] Adding meta_piece: <0xE0>
+I0000 00:00:1795105731.820146    2459 trainer_interface.cc:461] Adding meta_piece: <0xE1>
+I0000 00:00:1795105731.820148    2459 trainer_interface.cc:461] Adding meta_piece: <0xE2>
+I0000 00:00:1795105731.820150    2459 trainer_interface.cc:461] Adding meta_piece: <0xE3>
+I0000 00:00:1795105731.820152    2459 trainer_interface.cc:461] Adding meta_piece: <0xE4>
+I0000 00:00:1795105731.820155    2459 trainer_interface.cc:461] Adding meta_piece: <0xE5>
+I0000 00:00:1795105731.820157    2459 trainer_interface.cc:461] Adding meta_piece: <0xE6>
+I0000 00:00:1795105731.820159    2459 trainer_interface.cc:461] Adding meta_piece: <0xE7>
+I0000 00:00:1795105731.820160    2459 trainer_interface.cc:461] Adding meta_piece: <0xE8>
+I0000 00:00:1795105731.820162    2459 trainer_interface.cc:461] Adding meta_piece: <0xE9>
+I0000 00:00:1795105731.820164    2459 trainer_interface.cc:461] Adding meta_piece: <0xEA>
+I0000 00:00:1795105731.820166    2459 trainer_interface.cc:461] Adding meta_piece: <0xEB>
+I0000 00:00:1795105731.820170    2459 trainer_interface.cc:461] Adding meta_piece: <0xEC>
+I0000 00:00:1795105731.820173    2459 trainer_interface.cc:461] Adding meta_piece: <0xED>
+I0000 00:00:1795105731.820175    2459 trainer_interface.cc:461] Adding meta_piece: <0xEE>
+I0000 00:00:1795105731.820176    2459 trainer_interface.cc:461] Adding meta_piece: <0xEF>
+I0000 00:00:1795105731.820178    2459 trainer_interface.cc:461] Adding meta_piece: <0xF0>
+I0000 00:00:1795105731.820180    2459 trainer_interface.cc:461] Adding meta_piece: <0xF1>
+I0000 00:00:1795105731.820182    2459 trainer_interface.cc:461] Adding meta_piece: <0xF2>
+I0000 00:00:1795105731.820183    2459 trainer_interface.cc:461] Adding meta_piece: <0xF3>
+I0000 00:00:1795105731.820185    2459 trainer_interface.cc:461] Adding meta_piece: <0xF4>
+I0000 00:00:1795105731.820188    2459 trainer_interface.cc:461] Adding meta_piece: <0xF5>
+I0000 00:00:1795105731.820190    2459 trainer_interface.cc:461] Adding meta_piece: <0xF6>
+I0000 00:00:1795105731.820192    2459 trainer_interface.cc:461] Adding meta_piece: <0xF7>
+I0000 00:00:1795105731.820193    2459 trainer_interface.cc:461] Adding meta_piece: <0xF8>
+I0000 00:00:1795105731.820195    2459 trainer_interface.cc:461] Adding meta_piece: <0xF9>
+I0000 00:00:1795105731.820197    2459 trainer_interface.cc:461] Adding meta_piece: <0xFA>
+I0000 00:00:1795105731.820199    2459 trainer_interface.cc:461] Adding meta_piece: <0xFB>
+I0000 00:00:1795105731.820200    2459 trainer_interface.cc:461] Adding meta_piece: <0xFC>
+I0000 00:00:1795105731.820203    2459 trainer_interface.cc:461] Adding meta_piece: <0xFD>
+I0000 00:00:1795105731.820205    2459 trainer_interface.cc:461] Adding meta_piece: <0xFE>
+I0000 00:00:1795105731.820207    2459 trainer_interface.cc:461] Adding meta_piece: <0xFF>
+I0000 00:00:1795105731.820304    2459 trainer_interface.cc:466] Normalizing sentences...
+I0000 00:00:1795105732.300831    2459 trainer_interface.cc:575] all chars count=57328507
+I0000 00:00:1795105732.303698    2459 trainer_interface.cc:588] Done: 99.95% characters are covered.
+I0000 00:00:1795105732.303732    2459 trainer_interface.cc:601] Alphabet size=8867
+I0000 00:00:1795105732.303737    2459 trainer_interface.cc:602] Final character coverage=0.9995
+I0000 00:00:1795105732.459700    2459 trainer_interface.cc:655] Done! preprocessed 91688 sentences.
+I0000 00:00:1795105732.459793    2459 trainer_interface.cc:661] Tokenizing input sentences with whitespace: 91688
+I0000 00:00:1795105735.571822    2459 trainer_interface.cc:692] Done! 1461666
+I0000 00:00:1795105743.010184    2459 bpe_model_trainer.cc:421] Merged: freq=17253 merges=100 piece=成立
+I0000 00:00:1795105743.541691    2459 bpe_model_trainer.cc:421] Merged: freq=11077 merges=200 piece=他的
+I0000 00:00:1795105743.982023    2459 bpe_model_trainer.cc:421] Merged: freq=8407 merges=300 piece=獲得
+I0000 00:00:1795105744.334972    2459 bpe_model_trainer.cc:421] Merged: freq=6673 merges=400 piece=比賽
+I0000 00:00:1795105744.638833    2459 bpe_model_trainer.cc:421] Merged: freq=5790 merges=500 piece=得主
+I0000 00:00:1795105744.903450    2459 bpe_model_trainer.cc:421] Merged: freq=5201 merges=600 piece=之間
+I0000 00:00:1795105745.160933    2459 bpe_model_trainer.cc:421] Merged: freq=4551 merges=700 piece=▁中华人民共和国
+I0000 00:00:1795105745.394620    2459 bpe_model_trainer.cc:421] Merged: freq=4201 merges=800 piece=現在
+I0000 00:00:1795105745.598779    2459 bpe_model_trainer.cc:421] Merged: freq=3824 merges=900 piece=兄弟
+I0000 00:00:1795105745.795525    2459 bpe_model_trainer.cc:421] Merged: freq=3540 merges=1000 piece=关系
+I0000 00:00:1795105745.979488    2459 bpe_model_trainer.cc:421] Merged: freq=3246 merges=1100 piece=和平
+I0000 00:00:1795105746.149704    2459 bpe_model_trainer.cc:421] Merged: freq=3032 merges=1200 piece=超過
+I0000 00:00:1795105746.341713    2459 bpe_model_trainer.cc:421] Merged: freq=2828 merges=1300 piece=这种
+I0000 00:00:1795105746.510568    2459 bpe_model_trainer.cc:421] Merged: freq=2686 merges=1400 piece=安徽
+I0000 00:00:1795105746.661221    2459 bpe_model_trainer.cc:421] Merged: freq=2528 merges=1500 piece=月至
+I0000 00:00:1795105746.800628    2459 bpe_model_trainer.cc:421] Merged: freq=2384 merges=1600 piece=行動
+I0000 00:00:1795105746.935158    2459 bpe_model_trainer.cc:421] Merged: freq=2256 merges=1700 piece=个人
+I0000 00:00:1795105747.055990    2459 bpe_model_trainer.cc:421] Merged: freq=2156 merges=1800 piece=或是
+I0000 00:00:1795105747.175005    2459 bpe_model_trainer.cc:421] Merged: freq=2053 merges=1900 piece=连接
+I0000 00:00:1795105747.383496    2459 bpe_model_trainer.cc:421] Merged: freq=1964 merges=2000 piece=名称
+I0000 00:00:1795105747.504071    2459 bpe_model_trainer.cc:421] Merged: freq=1890 merges=2100 piece=▁作品
+I0000 00:00:1795105747.617557    2459 bpe_model_trainer.cc:421] Merged: freq=1807 merges=2200 piece=类似
+I0000 00:00:1795105747.724766    2459 bpe_model_trainer.cc:421] Merged: freq=1735 merges=2300 piece=汽车
+I0000 00:00:1795105747.831320    2459 bpe_model_trainer.cc:421] Merged: freq=1679 merges=2400 piece=能夠
+I0000 00:00:1795105747.937559    2459 bpe_model_trainer.cc:421] Merged: freq=1619 merges=2500 piece=贏得
+I0000 00:00:1795105748.034013    2459 bpe_model_trainer.cc:421] Merged: freq=1552 merges=2600 piece=.1
+I0000 00:00:1795105748.141977    2459 bpe_model_trainer.cc:421] Merged: freq=1501 merges=2700 piece=內閣
+I0000 00:00:1795105748.237061    2459 bpe_model_trainer.cc:421] Merged: freq=1453 merges=2800 piece=随着
+I0000 00:00:1795105748.326954    2459 bpe_model_trainer.cc:421] Merged: freq=1407 merges=2900 piece=學位
+I0000 00:00:1795105748.443341    2459 bpe_model_trainer.cc:421] Merged: freq=1364 merges=3000 piece=。2008
+I0000 00:00:1795105748.572676    2459 bpe_model_trainer.cc:421] Merged: freq=1327 merges=3100 piece=現今
+I0000 00:00:1795105748.656939    2459 bpe_model_trainer.cc:421] Merged: freq=1278 merges=3200 piece=清代
+I0000 00:00:1795105748.743440    2459 bpe_model_trainer.cc:421] Merged: freq=1236 merges=3300 piece=人们
+I0000 00:00:1795105748.828675    2459 bpe_model_trainer.cc:421] Merged: freq=1201 merges=3400 piece=120
+I0000 00:00:1795105748.910544    2459 bpe_model_trainer.cc:421] Merged: freq=1162 merges=3500 piece=相互
+I0000 00:00:1795105748.994698    2459 bpe_model_trainer.cc:421] Merged: freq=1131 merges=3600 piece=碩士
+I0000 00:00:1795105749.072892    2459 bpe_model_trainer.cc:421] Merged: freq=1101 merges=3700 piece=占领
+I0000 00:00:1795105749.143869    2459 bpe_model_trainer.cc:421] Merged: freq=1070 merges=3800 piece=起义
+I0000 00:00:1795105749.213992    2459 bpe_model_trainer.cc:421] Merged: freq=1046 merges=3900 piece=团体
+I0000 00:00:1795105749.283149    2459 bpe_model_trainer.cc:421] Merged: freq=1017 merges=4000 piece=▁文化
+I0000 00:00:1795105749.350612    2459 bpe_model_trainer.cc:421] Merged: freq=991 merges=4100 piece=山的
+I0000 00:00:1795105749.429386    2459 bpe_model_trainer.cc:421] Merged: freq=970 merges=4200 piece=最高的
+I0000 00:00:1795105749.500031    2459 bpe_model_trainer.cc:421] Merged: freq=945 merges=4300 piece=成绩
+I0000 00:00:1795105749.564719    2459 bpe_model_trainer.cc:421] Merged: freq=925 merges=4400 piece=1976
+I0000 00:00:1795105749.633183    2459 bpe_model_trainer.cc:421] Merged: freq=907 merges=4500 piece=ild
+I0000 00:00:1795105749.692486    2459 bpe_model_trainer.cc:421] Merged: freq=885 merges=4600 piece=▁七
+I0000 00:00:1795105749.755624    2459 bpe_model_trainer.cc:421] Merged: freq=867 merges=4700 piece=年與
+I0000 00:00:1795105749.818516    2459 bpe_model_trainer.cc:421] Merged: freq=849 merges=4800 piece=,2008
+I0000 00:00:1795105749.885344    2459 bpe_model_trainer.cc:421] Merged: freq=831 merges=4900 piece=同治
+I0000 00:00:1795105749.941604    2459 bpe_model_trainer.cc:421] Merged: freq=817 merges=5000 piece=祖籍
+I0000 00:00:1795105750.000422    2459 bpe_model_trainer.cc:421] Merged: freq=803 merges=5100 piece=▁Gu
+I0000 00:00:1795105750.083556    2459 bpe_model_trainer.cc:421] Merged: freq=792 merges=5200 piece=毛泽东
+I0000 00:00:1795105750.145974    2459 bpe_model_trainer.cc:421] Merged: freq=776 merges=5300 piece=進一步
+I0000 00:00:1795105750.203497    2459 bpe_model_trainer.cc:421] Merged: freq=758 merges=5400 piece=中場
+I0000 00:00:1795105750.261269    2459 bpe_model_trainer.cc:421] Merged: freq=744 merges=5500 piece=蝴蝶
+I0000 00:00:1795105750.317807    2459 bpe_model_trainer.cc:421] Merged: freq=731 merges=5600 piece=有兩
+I0000 00:00:1795105750.374143    2459 bpe_model_trainer.cc:421] Merged: freq=718 merges=5700 piece=前身為
+I0000 00:00:1795105750.425710    2459 bpe_model_trainer.cc:421] Merged: freq=703 merges=5800 piece=貴族
+I0000 00:00:1795105750.479754    2459 bpe_model_trainer.cc:421] Merged: freq=692 merges=5900 piece=(2007
+I0000 00:00:1795105750.531230    2459 bpe_model_trainer.cc:421] Merged: freq=679 merges=6000 piece=产物
+I0000 00:00:1795105750.578979    2459 bpe_model_trainer.cc:421] Merged: freq=668 merges=6100 piece=一天
+I0000 00:00:1795105750.628381    2459 bpe_model_trainer.cc:421] Merged: freq=658 merges=6200 piece=声明
+I0000 00:00:1795105750.683290    2459 bpe_model_trainer.cc:421] Merged: freq=649 merges=6300 piece=高峰
+I0000 00:00:1795105750.739774    2459 bpe_model_trainer.cc:421] Merged: freq=639 merges=6400 piece=鐵路車站列表
+I0000 00:00:1795105750.789940    2459 bpe_model_trainer.cc:421] Merged: freq=629 merges=6500 piece=溶于
+I0000 00:00:1795105750.843172    2459 bpe_model_trainer.cc:421] Merged: freq=620 merges=6600 piece=耶穌
+I0000 00:00:1795105750.895192    2459 bpe_model_trainer.cc:421] Merged: freq=611 merges=6700 piece=请求
+I0000 00:00:1795105750.941098    2459 bpe_model_trainer.cc:421] Merged: freq=603 merges=6800 piece=1948
+I0000 00:00:1795105750.987512    2459 bpe_model_trainer.cc:421] Merged: freq=594 merges=6900 piece=很大的
+I0000 00:00:1795105751.035543    2459 bpe_model_trainer.cc:421] Merged: freq=583 merges=7000 piece=交響
+I0000 00:00:1795105751.081831    2459 bpe_model_trainer.cc:421] Merged: freq=573 merges=7100 piece=带有
+I0000 00:00:1795105751.127344    2459 bpe_model_trainer.cc:421] Merged: freq=566 merges=7200 piece=巴塞
+I0000 00:00:1795105751.171217    2459 bpe_model_trainer.cc:421] Merged: freq=558 merges=7300 piece=近似
+I0000 00:00:1795105751.212347    2459 bpe_model_trainer.cc:421] Merged: freq=550 merges=7400 piece=同志
+I0000 00:00:1795105751.254546    2459 bpe_model_trainer.cc:421] Merged: freq=542 merges=7500 piece=给了
+I0000 00:00:1795105751.300596    2459 bpe_model_trainer.cc:421] Merged: freq=534 merges=7600 piece=明清
+I0000 00:00:1795105751.348661    2459 bpe_model_trainer.cc:421] Merged: freq=527 merges=7700 piece=检测
+I0000 00:00:1795105751.390719    2459 bpe_model_trainer.cc:421] Merged: freq=520 merges=7800 piece=生殖
+I0000 00:00:1795105751.433914    2459 bpe_model_trainer.cc:421] Merged: freq=513 merges=7900 piece=勇士
+I0000 00:00:1795105751.476199    2459 bpe_model_trainer.cc:421] Merged: freq=507 merges=8000 piece=金馬
+I0000 00:00:1795105751.518312    2459 bpe_model_trainer.cc:421] Merged: freq=500 merges=8100 piece=海水
+I0000 00:00:1795105751.559829    2459 bpe_model_trainer.cc:421] Merged: freq=493 merges=8200 piece=可用
+I0000 00:00:1795105751.602694    2459 bpe_model_trainer.cc:421] Merged: freq=487 merges=8300 piece=灌木
+I0000 00:00:1795105751.640442    2459 bpe_model_trainer.cc:421] Merged: freq=482 merges=8400 piece=職業生涯
+I0000 00:00:1795105751.678924    2459 bpe_model_trainer.cc:421] Merged: freq=476 merges=8500 piece=镜头
+I0000 00:00:1795105751.718560    2459 bpe_model_trainer.cc:421] Merged: freq=470 merges=8600 piece=城區
+I0000 00:00:1795105751.757513    2459 bpe_model_trainer.cc:421] Merged: freq=465 merges=8700 piece=來自於
+I0000 00:00:1795105751.793608    2459 bpe_model_trainer.cc:421] Merged: freq=460 merges=8800 piece=组成员
+I0000 00:00:1795105751.830222    2459 bpe_model_trainer.cc:421] Merged: freq=454 merges=8900 piece=2(
+I0000 00:00:1795105751.864693    2459 bpe_model_trainer.cc:421] Merged: freq=449 merges=9000 piece=後因
+I0000 00:00:1795105751.899273    2459 bpe_model_trainer.cc:421] Merged: freq=444 merges=9100 piece=加尔
+I0000 00:00:1795105751.947312    2459 bpe_model_trainer.cc:421] Merged: freq=439 merges=9200 piece=ces
+I0000 00:00:1795105751.986120    2459 bpe_model_trainer.cc:421] Merged: freq=434 merges=9300 piece=▁威廉
+I0000 00:00:1795105752.025902    2459 bpe_model_trainer.cc:421] Merged: freq=429 merges=9400 piece=确认
+I0000 00:00:1795105752.063797    2459 bpe_model_trainer.cc:421] Merged: freq=424 merges=9500 piece=只有一
+I0000 00:00:1795105752.101662    2459 bpe_model_trainer.cc:421] Merged: freq=419 merges=9600 piece=运河
+I0000 00:00:1795105752.136579    2459 bpe_model_trainer.cc:421] Merged: freq=415 merges=9700 piece=納入
+I0000 00:00:1795105752.171801    2459 bpe_model_trainer.cc:421] Merged: freq=410 merges=9800 piece=并将
+I0000 00:00:1795105752.207946    2459 bpe_model_trainer.cc:421] Merged: freq=406 merges=9900 piece=▁23
+I0000 00:00:1795105752.242310    2459 bpe_model_trainer.cc:421] Merged: freq=402 merges=10000 piece=。1981
+I0000 00:00:1795105752.275149    2459 bpe_model_trainer.cc:421] Merged: freq=398 merges=10100 piece=背鰭硬棘
+I0000 00:00:1795105752.309856    2459 bpe_model_trainer.cc:421] Merged: freq=393 merges=10200 piece=租賃
+I0000 00:00:1795105752.340682    2459 bpe_model_trainer.cc:421] Merged: freq=388 merges=10300 piece=山顶
+I0000 00:00:1795105752.371988    2459 bpe_model_trainer.cc:421] Merged: freq=384 merges=10400 piece=希尔
+I0000 00:00:1795105752.402669    2459 bpe_model_trainer.cc:421] Merged: freq=380 merges=10500 piece=▁藤
+I0000 00:00:1795105752.434640    2459 bpe_model_trainer.cc:421] Merged: freq=377 merges=10600 piece=利桑那
+I0000 00:00:1795105752.466057    2459 bpe_model_trainer.cc:421] Merged: freq=374 merges=10700 piece=引起的
+I0000 00:00:1795105752.496266    2459 bpe_model_trainer.cc:421] Merged: freq=370 merges=10800 piece=胞胎
+I0000 00:00:1795105752.524514    2459 bpe_model_trainer.cc:421] Merged: freq=366 merges=10900 piece=卡羅
+I0000 00:00:1795105752.560390    2459 bpe_model_trainer.cc:421] Merged: freq=362 merges=11000 piece=事变
+I0000 00:00:1795105752.597952    2459 bpe_model_trainer.cc:421] Merged: freq=359 merges=11100 piece=而出
+I0000 00:00:1795105752.633563    2459 bpe_model_trainer.cc:421] Merged: freq=355 merges=11200 piece=密西
+I0000 00:00:1795105752.666273    2459 bpe_model_trainer.cc:421] Merged: freq=352 merges=11300 piece=1200
+I0000 00:00:1795105752.702857    2459 bpe_model_trainer.cc:421] Merged: freq=348 merges=11400 piece=東晉
+I0000 00:00:1795105752.735872    2459 bpe_model_trainer.cc:421] Merged: freq=345 merges=11500 piece=底部
+I0000 00:00:1795105752.766503    2459 bpe_model_trainer.cc:421] Merged: freq=343 merges=11600 piece=名古屋市
+I0000 00:00:1795105752.797397    2459 bpe_model_trainer.cc:421] Merged: freq=339 merges=11700 piece=哈利
+I0000 00:00:1795105752.826489    2459 bpe_model_trainer.cc:421] Merged: freq=336 merges=11800 piece=国安
+I0000 00:00:1795105752.857197    2459 bpe_model_trainer.cc:421] Merged: freq=333 merges=11900 piece=录音
+I0000 00:00:1795105752.887121    2459 bpe_model_trainer.cc:421] Merged: freq=331 merges=12000 piece=、18
+I0000 00:00:1795105752.914173    2459 bpe_model_trainer.cc:421] Merged: freq=328 merges=12100 piece=拯救
+I0000 00:00:1795105752.942048    2459 bpe_model_trainer.cc:421] Merged: freq=325 merges=12200 piece=以致
+I0000 00:00:1795105752.971472    2459 bpe_model_trainer.cc:421] Merged: freq=323 merges=12300 piece=als
+I0000 00:00:1795105753.000140    2459 bpe_model_trainer.cc:421] Merged: freq=321 merges=12400 piece=斯里蘭卡
+I0000 00:00:1795105753.028989    2459 bpe_model_trainer.cc:421] Merged: freq=318 merges=12500 piece=▁清朝翰林院庶吉士
+I0000 00:00:1795105753.058077    2459 bpe_model_trainer.cc:421] Merged: freq=315 merges=12600 piece=南美
+I0000 00:00:1795105753.085781    2459 bpe_model_trainer.cc:421] Merged: freq=313 merges=12700 piece=狮子
+I0000 00:00:1795105753.112340    2459 bpe_model_trainer.cc:421] Merged: freq=311 merges=12800 piece=同盟会
+I0000 00:00:1795105753.141771    2459 bpe_model_trainer.cc:421] Merged: freq=308 merges=12900 piece=屋顶
+I0000 00:00:1795105753.168768    2459 bpe_model_trainer.cc:421] Merged: freq=306 merges=13000 piece=大部分的
+I0000 00:00:1795105753.202420    2459 bpe_model_trainer.cc:421] Merged: freq=303 merges=13100 piece=现已
+I0000 00:00:1795105753.232542    2459 bpe_model_trainer.cc:421] Merged: freq=300 merges=13200 piece=便會
+I0000 00:00:1795105753.262956    2459 bpe_model_trainer.cc:421] Merged: freq=298 merges=13300 piece=言论
+I0000 00:00:1795105753.293693    2459 bpe_model_trainer.cc:421] Merged: freq=295 merges=13400 piece=全港
+I0000 00:00:1795105753.326345    2459 bpe_model_trainer.cc:421] Merged: freq=293 merges=13500 piece=▁Bo
+I0000 00:00:1795105753.354784    2459 bpe_model_trainer.cc:421] Merged: freq=290 merges=13600 piece=普魯
+I0000 00:00:1795105753.384939    2459 bpe_model_trainer.cc:421] Merged: freq=288 merges=13700 piece=时刻
+I0000 00:00:1795105753.414046    2459 bpe_model_trainer.cc:421] Merged: freq=286 merges=13800 piece=美金
+I0000 00:00:1795105753.441760    2459 bpe_model_trainer.cc:421] Merged: freq=284 merges=13900 piece=-06
+I0000 00:00:1795105753.468837    2459 bpe_model_trainer.cc:421] Merged: freq=282 merges=14000 piece=遇难
+I0000 00:00:1795105753.494166    2459 bpe_model_trainer.cc:421] Merged: freq=280 merges=14100 piece=曾为
+I0000 00:00:1795105753.521109    2459 bpe_model_trainer.cc:421] Merged: freq=278 merges=14200 piece=原著
+I0000 00:00:1795105753.547406    2459 bpe_model_trainer.cc:421] Merged: freq=277 merges=14300 piece=▁1910
+I0000 00:00:1795105753.573888    2459 bpe_model_trainer.cc:421] Merged: freq=274 merges=14400 piece=全體
+I0000 00:00:1795105753.601764    2459 bpe_model_trainer.cc:421] Merged: freq=273 merges=14500 piece=。1944
+I0000 00:00:1795105753.628461    2459 bpe_model_trainer.cc:421] Merged: freq=271 merges=14600 piece=▁北海道旅客鐵道
+I0000 00:00:1795105753.655729    2459 bpe_model_trainer.cc:421] Merged: freq=269 merges=14700 piece=阿卜杜
+I0000 00:00:1795105753.680915    2459 bpe_model_trainer.cc:421] Merged: freq=267 merges=14800 piece=工业大学
+I0000 00:00:1795105753.706669    2459 bpe_model_trainer.cc:421] Merged: freq=265 merges=14900 piece=ship
+I0000 00:00:1795105753.732682    2459 bpe_model_trainer.cc:421] Merged: freq=263 merges=15000 piece=進軍
+I0000 00:00:1795105753.756464    2459 bpe_model_trainer.cc:421] Merged: freq=261 merges=15100 piece=激光
+I0000 00:00:1795105753.780483    2459 bpe_model_trainer.cc:421] Merged: freq=259 merges=15200 piece=▁钱
+I0000 00:00:1795105753.989032    2459 bpe_model_trainer.cc:421] Merged: freq=257 merges=15300 piece=UM
+I0000 00:00:1795105754.018781    2459 bpe_model_trainer.cc:421] Merged: freq=256 merges=15400 piece=是一顆
+I0000 00:00:1795105754.044674    2459 bpe_model_trainer.cc:421] Merged: freq=254 merges=15500 piece=除去
+I0000 00:00:1795105754.069744    2459 bpe_model_trainer.cc:421] Merged: freq=252 merges=15600 piece=九江
+I0000 00:00:1795105754.093283    2459 bpe_model_trainer.cc:421] Merged: freq=250 merges=15700 piece=協同
+I0000 00:00:1795105754.117848    2459 bpe_model_trainer.cc:421] Merged: freq=249 merges=15800 piece=的行政區劃
+I0000 00:00:1795105754.142866    2459 bpe_model_trainer.cc:421] Merged: freq=247 merges=15900 piece=狹窄
+I0000 00:00:1795105754.165278    2459 bpe_model_trainer.cc:421] Merged: freq=246 merges=16000 piece=交易所主板上市
+I0000 00:00:1795105754.186957    2459 bpe_model_trainer.cc:421] Merged: freq=243 merges=16100 piece=修院
+I0000 00:00:1795105754.211488    2459 bpe_model_trainer.cc:421] Merged: freq=242 merges=16200 piece=酋長
+I0000 00:00:1795105754.233631    2459 bpe_model_trainer.cc:421] Merged: freq=240 merges=16300 piece=相片
+I0000 00:00:1795105754.256628    2459 bpe_model_trainer.cc:421] Merged: freq=239 merges=16400 piece=ried
+I0000 00:00:1795105754.279014    2459 bpe_model_trainer.cc:421] Merged: freq=237 merges=16500 piece=idd
+I0000 00:00:1795105754.299967    2459 bpe_model_trainer.cc:421] Merged: freq=235 merges=16600 piece=多於
+I0000 00:00:1795105754.321891    2459 bpe_model_trainer.cc:421] Merged: freq=234 merges=16700 piece=同一個
+I0000 00:00:1795105754.343314    2459 bpe_model_trainer.cc:421] Merged: freq=232 merges=16800 piece=埃德
+I0000 00:00:1795105754.365345    2459 bpe_model_trainer.cc:421] Merged: freq=231 merges=16900 piece=眾議院
+I0000 00:00:1795105754.387612    2459 bpe_model_trainer.cc:421] Merged: freq=229 merges=17000 piece=預期
+I0000 00:00:1795105754.409524    2459 bpe_model_trainer.cc:421] Merged: freq=227 merges=17100 piece=受損
+I0000 00:00:1795105754.430598    2459 bpe_model_trainer.cc:421] Merged: freq=226 merges=17200 piece=廢棄
+I0000 00:00:1795105754.451497    2459 bpe_model_trainer.cc:421] Merged: freq=225 merges=17300 piece=與他
+I0000 00:00:1795105754.472317    2459 bpe_model_trainer.cc:421] Merged: freq=224 merges=17400 piece=去世後
+I0000 00:00:1795105754.490803    2459 bpe_model_trainer.cc:421] Merged: freq=223 merges=17500 piece=Instrumental
+I0000 00:00:1795105754.512665    2459 bpe_model_trainer.cc:421] Merged: freq=221 merges=17600 piece=間隔
+I0000 00:00:1795105754.531030    2459 bpe_model_trainer.cc:421] Merged: freq=219 merges=17700 piece=中市
+I0000 00:00:1795105754.551176    2459 bpe_model_trainer.cc:421] Merged: freq=218 merges=17800 piece=汽油
+I0000 00:00:1795105754.569933    2459 bpe_model_trainer.cc:421] Merged: freq=217 merges=17900 piece=木结构
+I0000 00:00:1795105754.588467    2459 bpe_model_trainer.cc:421] Merged: freq=215 merges=18000 piece=ов
+I0000 00:00:1795105754.609123    2459 bpe_model_trainer.cc:421] Merged: freq=214 merges=18100 piece=無效
+I0000 00:00:1795105754.628283    2459 bpe_model_trainer.cc:421] Merged: freq=213 merges=18200 piece=反映了
+I0000 00:00:1795105754.648058    2459 bpe_model_trainer.cc:421] Merged: freq=212 merges=18300 piece=丰富的
+I0000 00:00:1795105754.667589    2459 bpe_model_trainer.cc:421] Merged: freq=211 merges=18400 piece=世界遺產
+I0000 00:00:1795105754.687062    2459 bpe_model_trainer.cc:421] Merged: freq=210 merges=18500 piece=▁article
+I0000 00:00:1795105754.706833    2459 bpe_model_trainer.cc:421] Merged: freq=208 merges=18600 piece=尾柄
+I0000 00:00:1795105754.726633    2459 bpe_model_trainer.cc:421] Merged: freq=207 merges=18700 piece=鱷魚
+I0000 00:00:1795105754.745836    2459 bpe_model_trainer.cc:421] Merged: freq=206 merges=18800 piece=▁Page
+I0000 00:00:1795105754.764455    2459 bpe_model_trainer.cc:421] Merged: freq=204 merges=18900 piece=八旗
+I0000 00:00:1795105754.783585    2459 bpe_model_trainer.cc:421] Merged: freq=203 merges=19000 piece=法文
+I0000 00:00:1795105754.802505    2459 bpe_model_trainer.cc:421] Merged: freq=202 merges=19100 piece=▁数据
+I0000 00:00:1795105754.822124    2459 bpe_model_trainer.cc:421] Merged: freq=201 merges=19200 piece=当且仅当
+I0000 00:00:1795105754.841015    2459 bpe_model_trainer.cc:421] Merged: freq=199 merges=19300 piece=和第
+I0000 00:00:1795105754.859864    2459 bpe_model_trainer.cc:421] Merged: freq=198 merges=19400 piece=太僕
+I0000 00:00:1795105754.877104    2459 bpe_model_trainer.cc:421] Merged: freq=197 merges=19500 piece=大坑
+I0000 00:00:1795105754.895296    2459 bpe_model_trainer.cc:421] Merged: freq=196 merges=19600 piece=瑞穗
+I0000 00:00:1795105754.913715    2459 bpe_model_trainer.cc:421] Merged: freq=195 merges=19700 piece=查看
+I0000 00:00:1795105754.932270    2459 bpe_model_trainer.cc:421] Merged: freq=194 merges=19800 piece=犀牛
+I0000 00:00:1795105754.950656    2459 bpe_model_trainer.cc:421] Merged: freq=193 merges=19900 piece=而后
+I0000 00:00:1795105754.969342    2459 bpe_model_trainer.cc:421] Merged: freq=192 merges=20000 piece=若是
+I0000 00:00:1795105754.987134    2459 bpe_model_trainer.cc:421] Merged: freq=191 merges=20100 piece=駕崩
+I0000 00:00:1795105755.005064    2459 bpe_model_trainer.cc:421] Merged: freq=190 merges=20200 piece=老年人
+I0000 00:00:1795105755.023989    2459 bpe_model_trainer.cc:421] Merged: freq=189 merges=20300 piece=有一次
+I0000 00:00:1795105755.042284    2459 bpe_model_trainer.cc:421] Merged: freq=188 merges=20400 piece=阅览
+I0000 00:00:1795105755.060771    2459 bpe_model_trainer.cc:421] Merged: freq=187 merges=20500 piece=eek
+I0000 00:00:1795105755.079040    2459 bpe_model_trainer.cc:421] Merged: freq=186 merges=20600 piece=的角度
+I0000 00:00:1795105755.096147    2459 bpe_model_trainer.cc:421] Merged: freq=185 merges=20700 piece=雅罗斯
+I0000 00:00:1795105755.113995    2459 bpe_model_trainer.cc:421] Merged: freq=184 merges=20800 piece=总统府
+I0000 00:00:1795105755.133670    2459 bpe_model_trainer.cc:421] Merged: freq=183 merges=20900 piece=回到了
+I0000 00:00:1795105755.151348    2459 bpe_model_trainer.cc:421] Merged: freq=182 merges=21000 piece=麻雀
+I0000 00:00:1795105755.169162    2459 bpe_model_trainer.cc:421] Merged: freq=181 merges=21100 piece=而定
+I0000 00:00:1795105755.187806    2459 bpe_model_trainer.cc:421] Merged: freq=180 merges=21200 piece=茂坪
+I0000 00:00:1795105755.204459    2459 bpe_model_trainer.cc:421] Merged: freq=179 merges=21300 piece=日之
+I0000 00:00:1795105755.220157    2459 bpe_model_trainer.cc:421] Merged: freq=178 merges=21400 piece=坐在
+I0000 00:00:1795105755.248309    2459 bpe_model_trainer.cc:421] Merged: freq=177 merges=21500 piece=下跌
+I0000 00:00:1795105755.269863    2459 bpe_model_trainer.cc:421] Merged: freq=176 merges=21600 piece=▁含
+I0000 00:00:1795105755.290740    2459 bpe_model_trainer.cc:421] Merged: freq=176 merges=21700 piece=ather
+I0000 00:00:1795105755.310456    2459 bpe_model_trainer.cc:421] Merged: freq=175 merges=21800 piece=其中一个
+I0000 00:00:1795105755.330384    2459 bpe_model_trainer.cc:421] Merged: freq=174 merges=21900 piece=青年队
+I0000 00:00:1795105755.348211    2459 bpe_model_trainer.cc:421] Merged: freq=173 merges=22000 piece=San
+I0000 00:00:1795105755.366251    2459 bpe_model_trainer.cc:421] Merged: freq=172 merges=22100 piece=阻礙
+I0000 00:00:1795105755.385395    2459 bpe_model_trainer.cc:421] Merged: freq=171 merges=22200 piece=评审
+I0000 00:00:1795105755.402877    2459 bpe_model_trainer.cc:421] Merged: freq=170 merges=22300 piece=成書
+I0000 00:00:1795105755.420527    2459 bpe_model_trainer.cc:421] Merged: freq=169 merges=22400 piece=博文
+I0000 00:00:1795105755.437541    2459 bpe_model_trainer.cc:421] Merged: freq=168 merges=22500 piece=了大
+I0000 00:00:1795105755.456277    2459 bpe_model_trainer.cc:421] Merged: freq=168 merges=22600 piece=▁Sky
+I0000 00:00:1795105755.473994    2459 bpe_model_trainer.cc:421] Merged: freq=167 merges=22700 piece=寫字樓
+I0000 00:00:1795105755.492175    2459 bpe_model_trainer.cc:421] Merged: freq=166 merges=22800 piece=▁二月
+I0000 00:00:1795105755.504117    2459 bpe_model_trainer.cc:438] Completed 22874 merge steps.
+I0000 00:00:1795105757.083216    2459 trainer_interface.cc:755] Saving model: data/processed/tokenizer/zh_bpe.model
+I0000 00:00:1795105757.093413    2459 trainer_interface.cc:767] Saving vocabs: data/processed/tokenizer/zh_bpe.vocab
+tokenizer -> data/processed/tokenizer/zh_bpe.model
+[2026-11-20 00:29:18] === 7. pack ===
+train: 112,470,880 tokens -> data/processed/bin/train.bin
+val: 1,101,085 tokens -> data/processed/bin/val.bin
+test: 1,200,866 tokens -> data/processed/bin/test.bin
+[2026-11-20 00:29:49] === 8. stats ===
+{
+  "train": {
+    "docs": 121234,
+    "chars": 176395464,
+    "tokens": 112470880,
+    "chars_per_token": 1.568
+  },
+  "val": {
+    "docs": 1237,
+    "chars": 1730064,
+    "tokens": 1101085,
+    "chars_per_token": 1.571
+  },
+  "test": {
+    "docs": 1237,
+    "chars": 1874919,
+    "tokens": 1200866,
+    "chars_per_token": 1.561
+  },
+  "vocab_size": 32000
+}
+[2026-11-20 00:29:52] === PREP DONE ===
+{
+  "train": {
+    "docs": 121234,
+    "chars": 176395464,
+    "tokens": 112470880,
+    "chars_per_token": 1.568
+  },
+  "val": {
+    "docs": 1237,
+    "chars": 1730064,
+    "tokens": 1101085,
+    "chars_per_token": 1.571
+  },
+  "test": {
+    "docs": 1237,
+    "chars": 1874919,
+    "tokens": 1200866,
+    "chars_per_token": 1.561
+  },
+  "vocab_size": 32000
+}3.5G	data/interim
+1.6G	data/processed

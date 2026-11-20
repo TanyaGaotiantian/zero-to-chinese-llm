@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.smoke/
+data/
+runs/
+export/
+*.bin
+*.pt
+*.log.tmp
+.DS_Store

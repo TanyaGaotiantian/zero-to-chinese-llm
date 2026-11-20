@@ -1,0 +1,17 @@
+param breakdown: {
+  "embedding": 24576000,
+  "per_block": 7226880,
+  "blocks": 101176320,
+  "final_norm": 768,
+  "total": 125753088
+}
+[compile] torch.compile(model) ... first step will be slow
+step     1 | loss 10.5145 | lr 1.20e-04 | gn 4.355 | 15.4k tok/s | 0.5 min
+step     5 | loss 9.3945 | lr 6.00e-04 | gn 0.952 | 116.3k tok/s | 0.8 min
+step    10 | loss 8.6958 | lr 5.11e-04 | gn 0.636 | 115.3k tok/s | 1.2 min
+step    15 | loss 8.6504 | lr 2.47e-04 | gn 0.473 | 114.7k tok/s | 1.5 min
+step    20 | loss 8.6328 | lr 6.59e-05 | gn 0.293 | 114.5k tok/s | 1.9 min
+[ckpt] step 20 saved
+[eval] step 20 val_loss 8.5804 ppl 5326.44
+[mem] peak allocated 11.15 GiB, reserved 12.12 GiB
+[done] steps=20 tokens=9830400 wall=2.2 min

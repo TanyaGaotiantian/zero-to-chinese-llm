@@ -1,0 +1,4 @@
+overlap steps: 60  range: 1..60
+max |loss diff| = 0.009987  mean = 0.002670
+batch fingerprints identical on all overlapping steps
+PASS

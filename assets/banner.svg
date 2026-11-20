@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" width="1200" height="320">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1220"/>
+      <stop offset="55%" stop-color="#111c33"/>
+      <stop offset="100%" stop-color="#1b2a4a"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4f9cff"/>
+      <stop offset="50%" stop-color="#7c5cff"/>
+      <stop offset="100%" stop-color="#39d0b0"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="320" fill="url(#bg)"/>
+  <g opacity="0.16" stroke="#7c9cff" stroke-width="1">
+    <path d="M0 260 H1200 M0 290 H1200 M0 230 H1200"/>
+  </g>
+  <circle cx="1010" cy="90" r="120" fill="#4f9cff" opacity="0.10" filter="url(#glow)"/>
+  <circle cx="1120" cy="230" r="90" fill="#39d0b0" opacity="0.10" filter="url(#glow)"/>
+
+  <text x="64" y="96" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="20" letter-spacing="6" fill="#7fa6ff">ZERO → CHINESE LLM</text>
+
+  <text x="62" y="170" font-family="Inter, 'PingFang SC', 'Microsoft YaHei', Arial, sans-serif" font-size="64" font-weight="700" fill="#ffffff">青鸾 QingLuan</text>
+  <text x="64" y="212" font-family="Inter, 'Helvetica Neue', Arial, sans-serif" font-size="24" fill="#c8d6f0">125M → 360M Chinese GPT, trained from scratch</text>
+
+  <rect x="64" y="238" width="640" height="6" rx="3" fill="url(#accent)"/>
+
+  <text x="64" y="286" font-family="Inter, 'PingFang SC', Arial, sans-serif" font-size="19" fill="#93a7c8">71,665 docs · 112.5M tokens · 114.3k tok/s · 11.15 GiB · ≈¥19 total</text>
+
+  <g font-family="Inter, Arial, sans-serif" font-size="15" fill="#0b1220">
+    <rect x="880" y="132" width="122" height="34" rx="17" fill="#4f9cff"/>
+    <text x="901" y="155">PyTorch 2.8</text>
+    <rect x="1012" y="132" width="112" height="34" rx="17" fill="#39d0b0"/>
+    <text x="1030" y="155">bf16 SDPA</text>
+    <rect x="880" y="176" width="150" height="34" rx="17" fill="#7c5cff"/>
+    <text x="898" y="199">RTX 4090D 24G</text>
+    <rect x="1040" y="176" width="84" height="34" rx="17" fill="#ffd166"/>
+    <text x="1057" y="199">¥19</text>
+  </g>
+</svg>

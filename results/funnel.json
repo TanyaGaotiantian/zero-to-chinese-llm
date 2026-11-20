@@ -1,0 +1,10 @@
+{
+  "raw": 485894,
+  "kept": 283923,
+  "too_long": 1098,
+  "too_short": 180799,
+  "low_zh_ratio": 18457,
+  "low_diversity": 55,
+  "repeated_lines": 1562,
+  "kept_ratio": 0.5843
+}
