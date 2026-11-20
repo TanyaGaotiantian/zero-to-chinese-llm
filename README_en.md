@@ -262,7 +262,38 @@ Diary entries are few (dozens to thousands). Chinese substring search works out 
 
 ---
 
-## 🕳 Seven real pitfalls (all paid for)
+## 🧰 Three snippets you can steal right now
+
+You do not need to run the whole project for these to pay off:
+
+**① A checkpoint that actually resumes**
+
+```python
+ckpt = {"model": model.state_dict(), "optim": optim.state_dict(),
+        "step": step, "tokens": tokens_seen, "config": asdict(cfg),
+        "data": {"epoch": ds.epoch, "pos": ds.pos, "n": ds.n,
+                 "order_sha1": hashlib.sha1(ds.order.tobytes()).hexdigest()},
+        "torch_rng": torch.get_rng_state(), "cuda_rng": torch.cuda.get_rng_state_all()}
+```
+
+**② Make MinHash 30x faster**
+
+```python
+sh = deterministic_sample(5_grams(doc.text), 512)   # cap shingles per document
+m.update_batch([s.encode() for s in sh])            # vectorised path, no python loop
+```
+
+**③ Never store raw model output as a fact in your memory system**
+
+```python
+digest = extractive_digest(recent_turns)            # facts first, never invented
+gen = llm_summarise(recent_turns)                   # optional narrative
+summary = digest + ("\nmodel note: " + gen if passes_quality_gate(gen) else "")
+```
+
+---
+
+## 🕳 Eight real pitfalls (all paid for)
 
 | # | Pitfall | Cost | Fix |
 |---|---|---|---|

@@ -268,7 +268,38 @@ zero-to-chinese-llm/
 
 ---
 
-## 🕳 六个真实的坑（都花了钱）
+## 🧰 可以直接抄走的三段代码
+
+不需要跑完整个项目，这三段单独拿走去用就不亏：
+
+**① 一个"真能续上"的 checkpoint**
+
+```python
+ckpt = {"model": model.state_dict(), "optim": optim.state_dict(),
+        "step": step, "tokens": tokens_seen, "config": asdict(cfg),
+        "data": {"epoch": ds.epoch, "pos": ds.pos, "n": ds.n,
+                 "order_sha1": hashlib.sha1(ds.order.tobytes()).hexdigest()},
+        "torch_rng": torch.get_rng_state(), "cuda_rng": torch.cuda.get_rng_state_all()}
+```
+
+**② 让 MinHash 从 1 小时降到 2 分钟**
+
+```python
+sh = deterministic_sample(5_grams(doc.text), 512)   # 每篇最多 512 个 shingle
+m.update_batch([s.encode() for s in sh])            # 走向量化路径，不要循环 update
+```
+
+**③ 别把模型输出直接当事实存进记忆库**
+
+```python
+digest = extractive_digest(recent_turns)            # 事实打底，永不编造
+gen = llm_summarise(recent_turns)                   # 模型复述，可有可无
+summary = digest + ("\n模型复述：" + gen if passes_quality_gate(gen) else "")
+```
+
+---
+
+## 🕳 八个真实的坑（都花了钱）
 
 | # | 坑 | 代价 | 解法 |
 |---|---|---|---|
